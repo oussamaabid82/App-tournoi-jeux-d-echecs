@@ -1,5 +1,5 @@
-from random import choice, sample, shuffle
-from datetime import datetime, date, time
+from random import sample
+from datetime import datetime
 
 class Tournoi:
     def __init__(self, nom_du_tournoi, lieu, date_debut, date_fin):
@@ -12,10 +12,9 @@ class Tournoi:
         print(f"Le tournoi {self.nom} à commencer le {self.date_debut}")
 
     def finirLeTournoi(self):
-        print(f"Fin  du tournoi {self.nom} à date la date {self.date_fin} ")
+        print(f"Fin du tournoi {self.nom} à la date {self.date_fin} ")
 
-class Joueurs: 
-    liste_des_joueurs = []
+class Joueur: 
     def __init__(self, nom_de_famille, prenom, date_de_naissance, sexe, classement):
         self.nom_de_famille = nom_de_famille
         self.prenom = prenom
@@ -25,8 +24,8 @@ class Joueurs:
 
     # dictionnaire contien la liste des joueures créer avec un index
     def listeDesJoueursIndexer(self):
-        index_joueur = [i for i in range(1, len(Joueurs.liste_des_joueurs)+1)]
-        dictionnaire = dict(zip(index_joueur, Joueurs.liste_des_joueurs))
+        index_joueur = [i for i in range(1, len(self.liste_des_joueurs)+1)]
+        dictionnaire = dict(zip(index_joueur, self.liste_des_joueurs))
         return dictionnaire    
 
     def sePresenter(self):
@@ -42,8 +41,7 @@ class Tour:
         self.heure_de_debut = heure_de_debut
         self.date_fin = date_fin
         self.heure_fin = heure_fin
-        
-        
+         
     def commencerLeTour(self):
         print(f"Le tour {self.nom_de_tour} a commencé le {self.date_de_debut} à {self.heure_de_debut}")
 
@@ -51,9 +49,9 @@ class Tour:
         pass
 
     def finirLeTour(self):
-        print(f"Le tour N°{self.numero_de_tours} est fini le {self.date_fin} à {self.heure_fin}")
+        print(f"Le tour {self.nom_de_tour} est fini le {self.date_fin} à {self.heure_fin}")
 
-class Matchs:
+class Match:
     def __init__(self):
         pass        
 
@@ -61,10 +59,10 @@ class Matchs:
         print(f"Le matche a commencé")
     
     def generationPaireDeJoueures(self):
-        liste_choisi = (sample(range(1, len(Joueurs.liste_des_joueurs)+1), 2))
+        liste_choisi = (sample(range(1, len(liste_joueurs)+1), 2))
         for index in liste_choisi:
         #liste_indexer = Joueurs.liste_des_joueurs_indexer
-            return index
+            print (index)
     
     def presenterLePaireDeJoueur(self):
         pass
@@ -89,7 +87,8 @@ class Description:
     def __init__(self):
         pass
     
-liste_des_joueurs = Joueurs.liste_des_joueurs
+
+liste_joueurs = []
 
 tournoi = Tournoi("Les champions", "Paris", "05/10/2021", "10/10/2021")
 tournoi.commencerLeTournoi()
@@ -97,15 +96,19 @@ tournoi.commencerLeTournoi()
 
 tour = Tour("Round1")
 tour.commencerLeTour()
-tour.finirLeTour()
 
-joueur1 = Joueurs("abid", "oussama", "10/10/82", "Homme", 2)
-joueur2 = Joueurs("BenM", "chadli", "10/10/1978", "Homme", 4)
-joueur3 = Joueurs("Esseghir", "moez", "10/10/1979", "Homme", 3)
-liste_des_joueurs.extend([joueur1, joueur2, joueur3])
+
+joueur1 = Joueur("abid", "oussama", "10/10/82", "Homme", 2)
+joueur2 = Joueur("BenM", "chadli", "10/10/1978", "Homme", 4)
+joueur3 = Joueur("Esseghir", "moez", "10/10/1979", "Homme", 3)
+
+liste_joueurs.extend([joueur1, joueur2, joueur3])
 
 #for joueur in liste_des_joueurs:
     #joueur.sePresenter()
 
-generation_joueur = Matchs.generationPaireDeJoueures
-generation_joueur(liste_des_joueurs)
+generation_joueur = Match()
+generation_joueur.generationPaireDeJoueures()
+
+tour.finirLeTour()
+tournoi.finirLeTournoi()
