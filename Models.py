@@ -12,26 +12,25 @@ class Tournoi:
         print(f"Le tournoi {self.nom} à commencer le {self.date_debut}")
 
     def finirLeTournoi(self):
-        print(f"Fin du tournoi {self.nom} à la date {self.date_fin} ")
+        print(f"Fin du tournoi {self.nom} à la date {self.date_fin}")
 
-class Joueur: 
-    def __init__(self, nom_de_famille, prenom, date_de_naissance, sexe, classement):
+class Joueur:
+     
+    def __init__(self, nom_de_famille, prenom, date_de_naissance, sexe, classement=int):
         self.nom_de_famille = nom_de_famille
         self.prenom = prenom
         self.date_de_naissance = date_de_naissance
         self.sexe = sexe
         self.classement = classement
-
-    # dictionnaire contien la liste des joueures créer avec un index
-    def listeDesJoueursIndexer(self):
-        index_joueur = [i for i in range(1, len(self.liste_des_joueurs)+1)]
-        dictionnaire = dict(zip(index_joueur, self.liste_des_joueurs))
-        return dictionnaire    
-
+        self.liste_joueurs = liste_joueurs.append([self.nom_de_famille, self.prenom, classement])
+        
     def sePresenter(self):
-        print(f"Nom:{self.nom_de_famille}\nPrénom:{self.prenom}\nDate de naissance:{self.date_de_naissance}\nSexe:{self.sexe}\nClassement:{self.classement}\n")
-    
+        """for i in liste_joueurs:
+            print(f"Nom:{i[0]}\nPrénom:{i[1]}\nDate de naissance:{i[2]}\nSexe:{i[3]}\n")"""
+        print(liste_joueurs)
+        
 class Tour:
+    liste_des_rounds = []
     def __init__(self, nom_de_tour, date_de_debut=datetime.now().date(), 
                 heure_de_debut=datetime.now().time(), date_fin=datetime.now().date(), 
                 heure_fin=datetime.now().time()
@@ -43,8 +42,15 @@ class Tour:
         self.heure_fin = heure_fin
          
     def commencerLeTour(self):
-        print(f"Le tour {self.nom_de_tour} a commencé le {self.date_de_debut} à {self.heure_de_debut}")
+        print(f"Le tour a commencé le {self.date_de_debut} à {self.heure_de_debut}")
 
+    def trierParClassement(self):
+        l = liste_joueurs
+        liste_trier = (sorted(l, key=lambda l:l[2]))
+        index_joueur = [f"joueur {index}" for index in range(1, len(liste_trier)+1)]
+        dictionnaire = dict(zip(index_joueur, liste_trier))
+        print(dictionnaire)
+        
     def creerListeDesMatchs(self):
         pass
 
@@ -59,10 +65,9 @@ class Match:
         print(f"Le matche a commencé")
     
     def generationPaireDeJoueures(self):
-        liste_choisi = (sample(range(1, len(liste_joueurs)+1), 2))
+        liste_choisi = sample(Joueur.creerLesIndexes(self), 2)
         for index in liste_choisi:
-        #liste_indexer = Joueurs.liste_des_joueurs_indexer
-            print (index)
+            print (index, Joueur.creerListeDesJoueursIndexer(self).get(index))
     
     def presenterLePaireDeJoueur(self):
         pass
@@ -93,22 +98,25 @@ liste_joueurs = []
 tournoi = Tournoi("Les champions", "Paris", "05/10/2021", "10/10/2021")
 tournoi.commencerLeTournoi()
 
+joueur1 = Joueur("AA", "WW", "10/10/1982", "Homme", 5)
+joueur2 = Joueur("BB", "XX", "10/10/1978", "Homme", 15)
+joueur3 = Joueur("CC", "VV", "10/10/1979", "Homme", 9)
+joueur4 = Joueur("DD", "ZZ", "10/10/1982", "Femme", 2)
+joueur5 = Joueur("EE", "YY", "10/10/1978", "Homme", 12)
+joueur6 = Joueur("FF", "UU", "10/10/1979", "Homme", 1)
+joueur7 = Joueur("GG", "PP", "10/10/1979", "Femme", 8)
+joueur8 = Joueur("HH", "LL", "10/10/1979", "Homme", 6)
 
-tour = Tour("Round1")
+
+tour = Tour("Round")
+tour.trierParClassement()
+
 tour.commencerLeTour()
 
-
-joueur1 = Joueur("abid", "oussama", "10/10/82", "Homme", 2)
-joueur2 = Joueur("BenM", "chadli", "10/10/1978", "Homme", 4)
-joueur3 = Joueur("Esseghir", "moez", "10/10/1979", "Homme", 3)
-
-liste_joueurs.extend([joueur1, joueur2, joueur3])
-
-#for joueur in liste_des_joueurs:
-    #joueur.sePresenter()
-
 generation_joueur = Match()
-generation_joueur.generationPaireDeJoueures()
+# generation_joueur.generationPaireDeJoueures()
 
-tour.finirLeTour()
-tournoi.finirLeTournoi()
+# Joueur.sePresenter(liste_joueurs)
+
+# tour.finirLeTour()
+# tournoi.finirLeTournoi()
