@@ -66,19 +66,34 @@ class Tour:
         """liste des matchs"""
         liste_paire_des_joueurs = self.genererPaireDeJoueursTour()
         return liste_paire_des_joueurs
+    
+    def saisirLesResultatDesMatch(self):
+        """Saisir les resultat de chaque match  """
+        liste_des_paires_plus_resultat = []
+        liste_des_paires = self.genererPaireDeJoueursTour()
+        for i in (range(len(liste_des_paires))):
+            score_joueur1 = input(f"Veuillez saisir le score du {liste_des_paires[i][0][0]}: ")
+            score_joueur2 = input((f"Veuillez saisir le score du {liste_des_paires[i][1][0]}: "))    
+            liste = (liste_des_paires[i][0] + (score_joueur1,)), (liste_des_paires[i][1] + (score_joueur2,))
+            print(liste)
+            liste_des_paires_plus_resultat.append([liste])
+        print(liste_des_paires_plus_resultat)
 
     def finirLeTour(self):
         print(f"Le tour {self.nom_de_tour} est fini le {self.date_fin} à {self.heure_fin}")
 
 class Match:
     def __init__(self, numero_de_match):
-        self.numero_de_match = numero_de_match        
+        self.numero_de_match = numero_de_match
+        numero_de_match += 1        
 
     def commencerLeMatch(self):
         print(f"Le matche a commencé")
     
-    def presenterLePaireDeJoueur(self):
-        pass
+    def numerisationDesMatchs(self):
+        liste_joueurs = tour.creerListeDesMatchs()
+        for numero in range(len(liste_joueurs)):
+            return(f"Match :{numero}")
 
     def finirLeMatch(self):
         print("fin du match")
@@ -118,6 +133,9 @@ tour = Tour("Round 1")
 tour.trierParClassement()
 tour.commencerLeTour()
 tour.creerListeDesMatchs()
+tour.saisirLesResultatDesMatch()
+
+match = Match(0)
 
 
 # Joueur.sePresenter(liste_joueurs)
