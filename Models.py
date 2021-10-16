@@ -15,14 +15,16 @@ class Tournoi:
         """Afficher à l'utilisateur la fin du tournoi"""
         print(f"Fin du tournoi {self.nom} à la date {self.date_fin}")
 
-class Joueur: 
+class Joueur:
+    joueur_creer = 0 
     def __init__(self, nom_de_famille, prenom, date_de_naissance, sexe, classement=int):
         self.nom_de_famille = nom_de_famille
         self.prenom = prenom
         self.date_de_naissance = date_de_naissance
         self.sexe = sexe
         self.classement = classement
-        self.liste_joueurs = liste_joueurs.append([self.nom_de_famille, self.prenom, classement])
+        Joueur.joueur_creer += 1
+        self.liste_joueurs = liste_joueurs.append([Joueur.joueur_creer, self.nom_de_famille, self.prenom, classement])
         
     def sePresenter(self):
         """for i in liste_joueurs:
@@ -31,6 +33,7 @@ class Joueur:
         
 class Tour:
     """Les dates et les heures de debut et de la fin de la tour sont générés automatiquement"""
+    round_creer = 0
     liste_des_rounds = []
     def __init__(self, nom_de_tour, date_de_debut=datetime.now().date(), 
                 heure_de_debut=datetime.now().time(), date_fin=datetime.now().date(), 
@@ -41,18 +44,17 @@ class Tour:
         self.heure_de_debut = heure_de_debut
         self.date_fin = date_fin
         self.heure_fin = heure_fin
+        Tour.round_creer += 1 
          
     def commencerLeTour(self):
         """Afficher la date et l'heure de debut de la tour"""
-        print(f"Le tour a commencé le {self.date_de_debut} à {self.heure_de_debut}")
+        print(f"Le {self.nom_de_tour} {Tour.round_creer} a commencé le {self.date_de_debut} à {self.heure_de_debut}")
 
     def trierParClassement(self):
         """Trier les joueurs en fonction de leur classement"""
         l = liste_joueurs
-        liste_trier = (sorted(l, key=lambda l:l[2]))
-        index_joueur = [f"joueur {index}" for index in range(1, len(liste_trier)+1)]
-        dictionnaire = list(zip(index_joueur, liste_trier))
-        return dictionnaire
+        liste_trier = (sorted(l, key=lambda l:l[3]))
+        return liste_trier
 
     def genererPaireDeJoueursTour(self):
         """Divisez les joueurs en deux moitiés, une supérieure et une inférieure"""
@@ -72,28 +74,24 @@ class Tour:
         liste_des_paires_plus_resultat = []
         liste_des_paires = self.genererPaireDeJoueursTour()
         for i in (range(len(liste_des_paires))):
-            score_joueur1 = input(f"Veuillez saisir le score du {liste_des_paires[i][0][0]}: ")
-            score_joueur2 = input((f"Veuillez saisir le score du {liste_des_paires[i][1][0]}: "))    
-            liste = (liste_des_paires[i][0] + (score_joueur1,)), (liste_des_paires[i][1] + (score_joueur2,))
+            score_joueur1 = list(input(f"Veuillez saisir le score du joueur {liste_des_paires[i][0][0]}: "))
+            score_joueur2 = list(input(f"Veuillez saisir le score du joueur {liste_des_paires[i][1][0]}: "))
+            liste = (liste_des_paires[i][0] + (score_joueur1)), (liste_des_paires[i][1] + (score_joueur2))
             print(liste)
             liste_des_paires_plus_resultat.append([liste])
-        print(liste_des_paires_plus_resultat)
+        return liste_des_paires_plus_resultat
 
     def finirLeTour(self):
         print(f"Le tour {self.nom_de_tour} est fini le {self.date_fin} à {self.heure_fin}")
 
 class Match:
-    def __init__(self, numero_de_match):
-        self.numero_de_match = numero_de_match
-        numero_de_match += 1        
+    match_creer = 0
+    def __init__(self, pair_de_joueur):
+        self.pair_de_joueur = pair_de_joueur
+        Match.match_creer += 1        
 
     def commencerLeMatch(self):
-        print(f"Le matche a commencé")
-    
-    def numerisationDesMatchs(self):
-        liste_joueurs = tour.creerListeDesMatchs()
-        for numero in range(len(liste_joueurs)):
-            return(f"Match :{numero}")
+        print(f"Le match: {Match.match_creer} a commencé")
 
     def finirLeMatch(self):
         print("fin du match")
@@ -118,25 +116,25 @@ liste_joueurs = []
 tournoi = Tournoi("Les champions", "Paris", "05/10/2021", "10/10/2021")
 tournoi.commencerLeTournoi()
 
-joueur = Joueur
-joueur("AA", "WW", "10/10/1982", "Homme", 5)
-joueur("BB", "XX", "10/10/1978", "Homme", 15)
-joueur("CC", "VV", "10/10/1979", "Homme", 9)
-joueur("DD", "ZZ", "10/10/1982", "Femme", 2)
-joueur("EE", "YY", "10/10/1978", "Homme", 3)
-joueur("FF", "UU", "10/10/1979", "Homme", 1)
-joueur("GG", "PP", "10/10/1979", "Femme", 8)
-joueur("HH", "LL", "10/10/1979", "Homme", 6)
+joueur1 = Joueur("AA", "WW", "10/10/1982", "Homme", 5)
+joueur2 = Joueur("BB", "XX", "10/10/1978", "Homme", 15)
+joueur3 = Joueur("CC", "VV", "10/10/1979", "Homme", 9)
+joueur4 = Joueur("DD", "ZZ", "10/10/1982", "Femme", 2)
+joueur5 = Joueur("EE", "YY", "10/10/1978", "Homme", 3)
+joueur6 = Joueur("FF", "UU", "10/10/1979", "Homme", 1)
+joueur7 = Joueur("GG", "PP", "10/10/1979", "Femme", 8)
+joueur8 = Joueur("HH", "LL", "10/10/1979", "Homme", 6)
 
 
-tour = Tour("Round 1")
-tour.trierParClassement()
+tour = Tour("Round")
+# tour.trierParClassement()
 tour.commencerLeTour()
-tour.creerListeDesMatchs()
-tour.saisirLesResultatDesMatch()
+# tour.creerListeDesMatchs()
+# tour.saisirLesResultatDesMatch()
 
-match = Match(0)
-
+for i in tour.creerListeDesMatchs():
+    match = Match(i)
+    match.commencerLeMatch()
 
 # Joueur.sePresenter(liste_joueurs)
 
