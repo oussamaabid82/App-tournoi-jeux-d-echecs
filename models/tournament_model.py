@@ -1,4 +1,3 @@
-from tinydb import TinyDB
 
 
 class TournamentModels:
@@ -19,11 +18,5 @@ class TournamentModels:
         }
         return serialisation
 
-    def save(self):
-        db = TinyDB("db.json")
-        table_tournoi = db.table("joueurs")
-        table_tournoi.truncate()	# clear the table first
-        table_tournoi.insert_multiple(self.serialisation_tournoi)
-        return table_tournoi
 
     

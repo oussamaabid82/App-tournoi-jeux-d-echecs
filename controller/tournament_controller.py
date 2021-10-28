@@ -1,24 +1,36 @@
+from tinydb import TinyDB
 from view.tournament_view import TournamentView
 from models.tournament_model import TournamentModels
 
+tournament_data = []
+class TournamentContoller:
 
-class TournametContoller:
     def __init__(self):
-        self.tournamentView = TournamentView()
+        pass
     
     def startTournament(self):
-        self.tournamentView.startView()
+        TournamentView.startView(self)
         reponse = input()
-        if reponse == "y" or "Y":
-            return self.tournamentView.tournamentStar()
+        if reponse == "y":
+            return TournamentView.tournamentStar(self)
         else:
-            return self.tournamentView.endView()
+            return TournamentView.endView(self)
 
     def creationTournement(self):
-        creation = self.tournamentView.tournamentCreation()
-        tournoi = TournamentModels(creation[0], creation[1], creation[2], creation[3])
-        return tournoi
-    
+        creation = TournamentView()
+        list = creation.tournamentCreation()
+        tournament = TournamentModels(list[0], list[1], list[2], list[3])
+        tournament_data.append([tournament.nom, tournament.lieu, tournament.date_debut, 
+        tournament.date_fin, tournament.nombre_de_tours])
+        return tournament
+   
     def showStartTournament(self):
-        start_message = self.tournamentView.startMessage()
+        start_message = TournamentView.startMessage(self, (tournament_data[0][0]))
         return start_message
+
+    def save(self):
+        db = TinyDB("db.json")
+        table_tournoi = db.table("joueurs")
+        table_tournoi.truncate()	# clear the table first
+        table_tournoi.insert_multiple(TournamentModels.serialisation_tournoi())
+        return table_tournoi

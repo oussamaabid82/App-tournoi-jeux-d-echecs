@@ -18,9 +18,9 @@ class TournamentView:
     def tournamentCreation(self): 
        return input("Nom du tournoi: "), input("Lieu: "), input("Date de debut: "), input("Date de la fin: ")
     
-    def startMessage(self):
+    def startMessage(self, nom):
         """Afficher à l'utilisateur le debut du tournoi"""
-        print(f"\nLe tournoi à commencer")
+        print(f"\nTournoi {nom} à commencer\n")
 
     def endMessage(self):
             """Afficher à l'utilisateur la fin du tournoi"""

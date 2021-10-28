@@ -13,5 +13,5 @@ class PlayerView:
        return creation
 
     def introducePlayer(self, nom_de_famille, prenom, classement):
-        print(f"le Joueur: {nom_de_famille} {prenom}, Classement: {classement} ")
+        print(f"le Joueur: {nom_de_famille} {prenom}, Classement: {classement}\n")
 

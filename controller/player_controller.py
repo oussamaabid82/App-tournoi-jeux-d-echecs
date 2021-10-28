@@ -1,15 +1,25 @@
-from models.player_model import Player
+from tinydb import TinyDB
+from models.player_model import PlayerModel
 from view.player_view import PlayerView
+from controller.tour_controller import players_list
 
-player_list = []
-class ControllerPlayer:
+
+
+class PlayerController:
     def __init__(self):
-        self.PlayerView = PlayerView()
+        pass
 
     def playerCreation(self):
-        for i in range(self.PlayerView.numberOfPlayer()):
-            joueur = self.PlayerView.playerData()
-            creation = Player(joueur[0], joueur[1], joueur[2], joueur[3], joueur[4])
-            self.PlayerView.introducePlayer(joueur[0], joueur[1], joueur[4])
-            player_list.append(creation)   
-           
+        for i in range(PlayerView.numberOfPlayer(self)):
+            joueur =PlayerView.playerData(self)
+            creation = PlayerModel(joueur[0], joueur[1], joueur[2], joueur[3], joueur[4])
+            PlayerView.introducePlayer(self, creation.nom_de_famille, creation.prenom, creation.classement)
+            players_list.append([creation.nom_de_famille, creation.prenom, creation.date_de_naissance, creation.sexe, creation.classement])
+
+    
+    def save(self):
+        db = TinyDB("db.json")
+        table_joueur = db.table("joueurs")
+        table_joueur.truncate()	# clear the table first
+        table_joueur.insert_multiple(self.serialisation_joueur)
+        return table_joueur
