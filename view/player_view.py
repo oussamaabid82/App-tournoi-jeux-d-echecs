@@ -5,12 +5,12 @@ class PlayerView:
         pass
 
     def numberOfPlayer(self):
-        nombre = int(input("Veuillez saisir le nombre de participant: "))
-        return nombre
+        nombre_of_player = int(input("Veuillez saisir le nombre de participant: "))
+        return nombre_of_player
 
     def playerData(self):
-       creation = (input("Nom: "), input("Prénom: "), input("Date de naissance: "), input("Sexe: "), input("Classement:"))
-       return creation
+       creation_player = (input("Nom: "), input("Prénom: "), input("Date de naissance: "), input("Sexe: "), input("Classement:"))
+       return creation_player
 
     def introducePlayer(self, nom_de_famille, prenom, classement):
         print(f"le Joueur: {nom_de_famille} {prenom}, Classement: {classement}\n")

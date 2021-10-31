@@ -1,7 +1,8 @@
 from tinydb import TinyDB
 from models.player_model import PlayerModel
+from models.tour_model import players_list
 from view.player_view import PlayerView
-from controller.tour_controller import players_list
+
 
 
 
@@ -14,8 +15,7 @@ class PlayerController:
             joueur =PlayerView.playerData(self)
             creation = PlayerModel(joueur[0], joueur[1], joueur[2], joueur[3], joueur[4])
             PlayerView.introducePlayer(self, creation.nom_de_famille, creation.prenom, creation.classement)
-            players_list.append([creation.nom_de_famille, creation.prenom, creation.date_de_naissance, creation.sexe, creation.classement])
-
+            players_list.append([creation, creation.classement])
     
     def save(self):
         db = TinyDB("db.json")

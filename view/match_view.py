@@ -12,3 +12,7 @@ class MatchView:
 
     def endMatch(self):
         print("fin du match")
+    
+    def enterMatchResults(self):
+        player_score1 = list(input(f"Veuillez saisir le score du joueur {list_of_pairs[i][0][0]}: "))
+        player_score2 = list(input(f"Veuillez saisir le score du joueur {list_of_pairs[i][1][0]}: "))

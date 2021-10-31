@@ -1,16 +1,13 @@
 from tinydb import TinyDB
 from controller.tour_controller import TourController
-from models.match_model import Match
+from models.match_model import MatchModel
 from view.match_view import MatchView
 
-match_list = []
+
 
 class ControllerMatch:
     def __init__(self):
         pass
-    
-    def startMatch(self):
-        return MatchView.starMatchView()
 
     def save(self):
         db = TinyDB("db.json")

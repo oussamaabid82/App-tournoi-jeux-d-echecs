@@ -1,7 +1,13 @@
 
 
 class TournamentModels:
-    def __init__(self, nom_du_tournoi, lieu, date_debut, date_fin, nombre_de_tours=4):
+    def __init__(self, 
+                nom_du_tournoi, 
+                lieu, 
+                date_debut, 
+                date_fin, 
+                nombre_de_tours=4
+                ):
         self.nom = nom_du_tournoi
         self.lieu = lieu
         self.date_debut = date_debut

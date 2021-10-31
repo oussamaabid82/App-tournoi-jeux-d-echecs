@@ -1,65 +1,39 @@
 from tinydb import TinyDB
-from models.tour_model import TourModel
+from models.tour_model import TourModel, players_list
 from models.match_model import MatchModel
 from models.player_model import PlayerModel
 from view.tour_view import TourView
 from view.match_view import MatchView
 
 
-rounds_list = []
-players_list = []
-tour_creer = 0
+
+round_create = 0
 
 class TourController:
-    def __init__(self):
-        self.tourview = TourView()
-        pass
-
-    def sortPlayersByRanking(self):
-        """Trier les joueurs en fonction de leur classement"""
-        l = players_list
-        list_sort = (sorted(l, key=lambda l:l[4]))
-        return list_sort
-
-    def topPlayersList(self):
-        """Divisez les joueurs en deux moitiés, une supérieure et une inférieure"""
-        list_sort = self.sortPlayersByRanking()
-        top_list = list_sort[:int(len(list_sort)/2)]
-        return top_list
-
-    def lowerPlayerList(self):
-        list_sort = self.sortPlayersByRanking()
-        lower_list = list_sort[int(len(list_sort)/2):]
-        return lower_list
-
-    """Générer les paires de joueurs qui vont s'infronter au premier tour"""   
-    def genererPairOfPlayers(self):
-        pair_of_player = list(zip(self.topPlayersList(), self.lowerPlayerList())) 
-        return pair_of_player   
-        
-    def startTour(self):
-        return self.tourview.startTourView()
-         
-    def creationMatch(self):
-        match_list = self.genererPairOfPlayers()
-        for match in match_list:
-            return match
     
-    def createRound(self):
-        for i in range(len(players_list)-1):
-            TourModel("Round")
-            self.startTour()
-            self.sortPlayersByRanking()            
-            #match = self.creationMatch()
-            match_list = self.genererPairOfPlayers()
-            
-            for match in match_list:
+    def __init__(self):
+        pass
+         
+    """def creationMatch(self):
+        tour_model = TourModel()
+        match_list = tour_model.genererPairOfPlayers()
+        for match in match_list:
                 MatchModel(match)
                 MatchView.starMatchView(self)
-                MatchView.playerMatch(self, match)
-
-            #match = MatchModel(self.creationMatch())
+                MatchView.playerMatch(self, match)"""
     
+    def createRound(self):
+        tour_models = TourModel()
+        TourView.startTourView(self,tour_models.nom_de_tour, round_create)
+        tour_models.sortPlayersByRanking()
+        match_model = MatchModel(tour_models.genererPairOfPlayers())
+        match_model.creationMatch()
+        match_view = MatchView()
+        match_view.starMatchView()
+        for match in match_model.creationMatch():
+            match_view.playerMatch(match)
+            match_view.endMatch()
+
     def save(self):
         db = TinyDB("db.json")
         table_tour = db.table("joueurs")
