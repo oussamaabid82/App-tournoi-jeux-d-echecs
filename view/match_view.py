@@ -5,14 +5,17 @@ class MatchView:
         pass
 
     def starMatchView(self):
-        print("Le match va commencer\n")
+        print("____ Le match va commencer ____\n")
     
     def playerMatch(self, match):
-        print(f"{match[0]} contre {match[1]}")
+        print(f"{match[0][0].prenom} contre {match[1][0].prenom}\n")
 
     def endMatch(self):
-        print("fin du match")
+        print("____ fin du match ____\n")
     
-    def enterMatchResults(self):
-        player_score1 = list(input(f"Veuillez saisir le score du joueur {list_of_pairs[i][0][0]}: "))
-        player_score2 = list(input(f"Veuillez saisir le score du joueur {list_of_pairs[i][1][0]}: "))
+    def enterMatchResults(self, listPairs):
+        player_score1 = list(input(f"* Veuillez saisir le score du joueur {listPairs[0][0].prenom}: "))
+        player_score2 = list(input(f"* Veuillez saisir le score du joueur {listPairs[1][0].prenom}: "))
+        liste = (listPairs[0] + (player_score1)), (listPairs[1] + (player_score2))
+        print (liste)
+        return liste

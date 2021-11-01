@@ -2,6 +2,7 @@ from datetime import datetime
 
 
 players_list = []
+match_list = []
 
 class TourModel:
     """Les dates et les heures de debut et de la fin de la tour sont générés automatiquement"""

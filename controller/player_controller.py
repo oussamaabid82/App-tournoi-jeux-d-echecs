@@ -9,13 +9,13 @@ from view.player_view import PlayerView
 class PlayerController:
     def __init__(self):
         pass
-
+    
     def playerCreation(self):
         for i in range(PlayerView.numberOfPlayer(self)):
             joueur =PlayerView.playerData(self)
             creation = PlayerModel(joueur[0], joueur[1], joueur[2], joueur[3], joueur[4])
             PlayerView.introducePlayer(self, creation.nom_de_famille, creation.prenom, creation.classement)
-            players_list.append([creation, creation.classement])
+            players_list.append([creation])
     
     def save(self):
         db = TinyDB("db.json")

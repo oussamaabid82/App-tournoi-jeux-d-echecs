@@ -5,7 +5,7 @@ class TourView:
         pass
 
     def startTourView(self,round_name, nombre_of_ronde):
-        print(f"{round_name} {nombre_of_ronde+1} va commencer\n")
+        print(f"\n***** {round_name} {nombre_of_ronde} va commencer *****\n")
 
     def finishTour(self):
         print(f"Le tour est fini")
