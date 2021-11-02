@@ -4,15 +4,15 @@ from controller.tour_controller import TourController
 from controller.match_controller import ControllerMatch
 
 
+
 """tournament_controller = TournamentContoller()
 tournament_controller.startTournament()
 tournament_controller.creationTournement()
 tournament_controller.showStartTournament()"""
 
 player_conroller = PlayerController()
-player_conroller.playerCreation()
+players = player_conroller.createPlayers()
 
-tour_controller = TourController()
-tour_controller.createRound()
 
-match_controller = ControllerMatch()
+tour_controller = TourController(players)
+tour_controller.createFirstRound()
