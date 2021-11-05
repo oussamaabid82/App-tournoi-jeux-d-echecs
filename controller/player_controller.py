@@ -11,13 +11,14 @@ class PlayerController:
     
     def createPlayers(self):
         players = []
-        
         for i in range(PlayerView.numberOfPlayer(self)):
             joueur = PlayerView.playerData(self)
             player = PlayerModel(joueur[0], joueur[1], joueur[2], joueur[3], joueur[4])
             PlayerView.introducePlayer(self, player.nom_de_famille, player.prenom, player.classement)
             players.append(player)
         return players
+
+
 
     def save(self):
         db = TinyDB("db.json")

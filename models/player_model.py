@@ -12,6 +12,8 @@ class PlayerModel:
         self.date_de_naissance = date_de_naissance
         self.sexe = sexe
         self.classement = classement
+        self.score = [] 
+
 
           
     def serializationPlayer(self):
