@@ -1,33 +1,51 @@
+from typing import List
 from tinydb import TinyDB
 from view.tournament_view import TournamentView
 from models.tournament_model import TournamentModels
 
-tournament_data = []
-class TournamentContoller:
 
-    def __init__(self):
-        pass
+class TournamentContoller:
+    tournament_data = []
+    def __init__(self, players="", round=""):
+        self.players = players
+        self.round = round
+        self.tournament = TournamentModels()
+        self.tournament_view = TournamentView()
     
     def startTournament(self):
-        TournamentView.startView(self)
+        self.tournament_view.startView()
         reponse = input()
         if reponse == "y":
-            return TournamentView.tournamentStar(self)
+            return self.tournament_view.tournamentStar()
         else:
-            return TournamentView.endView(self)
+            return self.tournament_view.endView()
 
     def creationTournement(self):
-        creation = TournamentView()
-        list = creation.tournamentCreation()
-        tournament = TournamentModels(list[0], list[1], list[2], list[3])
-        tournament_data.append([tournament.nom, tournament.lieu, tournament.date_debut, 
-        tournament.date_fin, tournament.nombre_de_tours])
-        return tournament
-   
+        list = self.tournament_view.tournamentCreation()
+        self.tournament.__init__(list[0], list[1], list[2], list[3])
+        self.tournament_data.append(
+                                    [self.tournament.nom, self.tournament.lieu, 
+                                    self.tournament.date_debut, 
+                                    self.tournament.date_fin, self.tournament.nombre_de_tours]
+                                    )
+        self.tournament.createTournamentList()
+        return self.tournament
+    
     def showStartTournament(self):
-        start_message = TournamentView.startMessage(self, (tournament_data[0][0]))
+        start_message = self.tournament_view.startMessage(self.tournament_data[0][0])
         return start_message
+    
+    def createList(self):
+        self.tournament.players_list = self.players
+        self.tournament.tours_list = self.round
 
+    def reportPlayerController(self):
+        answer = self.tournament_view.playerList()
+        liste = self.tournament.reportPlayerModel(answer)
+        for player in liste:    
+            self.tournament_view.show(player)
+
+    
     def save(self):
         db = TinyDB("db.json")
         table_tournoi = db.table("joueurs")

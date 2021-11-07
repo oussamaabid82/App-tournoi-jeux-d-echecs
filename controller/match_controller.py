@@ -1,9 +1,4 @@
 from tinydb import TinyDB
-from controller.tour_controller import TourController
-from models.match_model import MatchModel
-from models.tour_model import TourModel
-from view.match_view import MatchView
-
 
 
 class ControllerMatch:

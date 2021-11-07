@@ -26,3 +26,12 @@ class TournamentView:
             """Afficher à l'utilisateur la fin du tournoi"""
             print(f"Fin du tournoi")
 
+    def playerList(self):
+        print("\nAfficher la liste des joueurs:\n")
+        print(" 1: Par ordre Alphabetique")
+        print(" 2: Par classement\n")
+        answer = input("Saisissez 1 ou 2: ")
+        return(answer)
+    
+    def show(self, player):
+        print(player)

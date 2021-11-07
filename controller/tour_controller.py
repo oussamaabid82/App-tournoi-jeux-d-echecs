@@ -8,37 +8,38 @@ from view.match_view import MatchView
 class TourController:
     def __init__(self, players):
         self.players = players
+        self.tour_view = TourView()
+        self.match_view = MatchView()
           
     def createFirstRound(self):
         tour_models = TourModel()
         tour_models.createTourList()
         tour_models.players_list = self.players
-        TourView.startTourView(self,tour_models.nom_de_tour)
+        self.tour_view.startTourView(tour_models.nom_de_tour, len(tour_models.round_list))
         tour_models.sortPlayersByRanking()
         for pair in tour_models.genererPairOfPlayers():
-            match_view = MatchView()
-            match_view.starMatchView()
-            match_view.playerMatch(pair)
-            match_view.endMatch()
-            result = match_view.enterMatchResults(pair)
+            self.match_view.starMatchView()
+            self.match_view.playerMatch(pair)
+            self.match_view.endMatch()
+            result = self.match_view.enterMatchResults(pair)
             match_model = MatchModel(result)
-            match_model.creationMatch()
+            match_model.creationMatchList()
             tour_models.match_list.append(result)
-        
+        return(tour_models.round_list)
+
     def createNextRound(self):
         for round in range(len(self.players)-2):
             tour_models = TourModel()
             tour_models.createTourList()
             tour_models.players_list = self.players
-            TourView.startTourView(self, tour_models.nom_de_tour)
+            self.tour_view.startTourView(tour_models.nom_de_tour, len(tour_models.round_list))
             for pair in tour_models.generatePaire():
-                match_view = MatchView()
-                match_view.starMatchView()
-                match_view.playerMatch(pair)
-                match_view.endMatch()
-                result = match_view.enterMatchResults(pair)
+                self.match_view.starMatchView()
+                self.match_view.playerMatch(pair)
+                self.match_view.endMatch()
+                result = self.match_view.enterMatchResults(pair)
                 match_model = MatchModel(result)
-                match_model.creationMatch()
+                match_model.creationMatchList()
                 tour_models.match_list.append(result)
         
     def save(self):

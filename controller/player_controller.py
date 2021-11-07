@@ -1,7 +1,5 @@
 from tinydb import TinyDB
 from models.player_model import PlayerModel
-from models.tour_model import TourModel
-
 from view.player_view import PlayerView
 
 
@@ -17,8 +15,6 @@ class PlayerController:
             PlayerView.introducePlayer(self, player.nom_de_famille, player.prenom, player.classement)
             players.append(player)
         return players
-
-
 
     def save(self):
         db = TinyDB("db.json")

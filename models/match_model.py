@@ -1,12 +1,12 @@
 
 
 class MatchModel:
+    match_list= []
     def __init__(self, match):
         self.match = match
 
-    def creationMatch(self):
-        match = self.match
-        return match
+    def creationMatchList(self):
+        self.match_list.append(self)
 
     def serialization_match(self):
         serialisation = {
