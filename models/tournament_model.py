@@ -25,10 +25,11 @@ class TournamentModels:
         l = self.players_list       
         if answer == 1:
             list_sorted_by_name = (sorted(l, key=lambda l:l.nom_de_famille))
-            return list_sorted_by_name
+            for i in list_sorted_by_name:
+                return i
         elif answer == 2:
             list_sorted_by_classement = (sorted(l, key=lambda l:l.classement))
-            return list_sorted_by_classement
+            return list_sorted_by_classement 
             
     def serialization_tournoi(self):
         serialisation = {

@@ -14,10 +14,6 @@ class TournamentContoller:
     def startTournament(self):
         answer = self.tournament_view.startView()
         return answer
-    
-    def end_tournament(self):
-        message = self.tournament_view.endView()
-        return message
        
     def creationTournement(self):
         list = self.tournament_view.tournamentCreation()
@@ -44,8 +40,8 @@ class TournamentContoller:
     def reportPlayerController(self):
         answer = self.tournament_view.playerList()
         liste = self.tournament.reportPlayerModel(answer)
-        for player in liste:    
-            self.tournament_view.show(player)
+        
+        self.tournament_view.show(liste)
 
     def save(self):
         db = TinyDB("db.json")

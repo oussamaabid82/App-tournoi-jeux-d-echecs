@@ -10,7 +10,7 @@ class TournamentView:
         print("Voulez vous creez un nouveau tournoi? [y/n]")
         answer = input()
         return answer
-           
+
     def endView(self):
         print("\n--------------- A la prochaine ---------------")
     

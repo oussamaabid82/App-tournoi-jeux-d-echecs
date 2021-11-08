@@ -5,7 +5,7 @@ class PlayerView:
         pass
 
     def numberOfPlayer(self):
-        nombre_of_player = int(input("Veuillez saisir le nombre de participant: "))
+        nombre_of_player = int(input("\nVeuillez saisir le nombre de participant: "))
         return nombre_of_player
 
     def playerData(self):

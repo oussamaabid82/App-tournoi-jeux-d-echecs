@@ -3,6 +3,7 @@ from datetime import datetime
 class TourModel:
     players_list = []
     round_list = []
+    match_list = []
     """Les dates et les heures de debut et de la fin de la tour sont générés automatiquement"""
     def __init__(self, nom_de_tour="Ronde",
                 date_de_debut=datetime.now().date(), 
@@ -15,7 +16,6 @@ class TourModel:
         self.heure_de_debut = heure_de_debut
         self.date_fin = date_fin
         self.heure_fin = heure_fin
-        self.match_list = []
     
     def createTourList(self):
         self.round_list.append(self)
@@ -46,15 +46,15 @@ class TourModel:
         l = self.players_list
         list_sort = (sorted(l, key=lambda l:sum(l.score)))
         return list_sort
+
+    def updatePlayerClassementModel(self):
+            return self.players_list           
     
     def generatePaire(self):
         list_sort= self.sortPlayersByPoints()
         list1 = reversed(list_sort[1::2])
         list2 = reversed(list_sort[::2])
         paire = list(zip(list1, list2))
-        """for i in paire:
-            for y in i:
-                print (y.score)"""
         return paire
 
     def serializationTour(self):
