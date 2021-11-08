@@ -8,9 +8,11 @@ class TournamentView:
     def startView(self):
         print("\n--------------- BONJOUR ---------------\n")
         print("Voulez vous creez un nouveau tournoi? [y/n]")
-            
+        answer = input()
+        return answer
+           
     def endView(self):
-        print("--------------- A la prochaine ---------------")
+        print("\n--------------- A la prochaine ---------------")
     
     def tournamentStar(self):
         print("\nVeuillez saisir les données suivantes\n")

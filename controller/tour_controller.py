@@ -17,14 +17,15 @@ class TourController:
         tour_models.players_list = self.players
         self.tour_view.startTourView(tour_models.nom_de_tour, len(tour_models.round_list))
         tour_models.sortPlayersByRanking()
+        self.match_view.starMatchView()
         for pair in tour_models.genererPairOfPlayers():
-            self.match_view.starMatchView()
             self.match_view.playerMatch(pair)
-            self.match_view.endMatch()
+        for pair in tour_models.genererPairOfPlayers():
             result = self.match_view.enterMatchResults(pair)
             match_model = MatchModel(result)
             match_model.creationMatchList()
             tour_models.match_list.append(result)
+        self.tour_view.finishTour(tour_models.nom_de_tour, len(tour_models.round_list))
         return(tour_models.round_list)
 
     def createNextRound(self):
@@ -33,15 +34,16 @@ class TourController:
             tour_models.createTourList()
             tour_models.players_list = self.players
             self.tour_view.startTourView(tour_models.nom_de_tour, len(tour_models.round_list))
+            self.match_view.starMatchView()
             for pair in tour_models.generatePaire():
-                self.match_view.starMatchView()
                 self.match_view.playerMatch(pair)
-                self.match_view.endMatch()
+            for pair in tour_models.generatePaire():
                 result = self.match_view.enterMatchResults(pair)
                 match_model = MatchModel(result)
                 match_model.creationMatchList()
                 tour_models.match_list.append(result)
-        
+            self.tour_view.finishTour(tour_models.nom_de_tour, len(tour_models.round_list))
+
     def save(self):
         db = TinyDB("db.json")
         table_tour = db.table("joueurs")

@@ -1,4 +1,3 @@
-from typing import List
 from tinydb import TinyDB
 from view.tournament_view import TournamentView
 from models.tournament_model import TournamentModels
@@ -13,13 +12,13 @@ class TournamentContoller:
         self.tournament_view = TournamentView()
     
     def startTournament(self):
-        self.tournament_view.startView()
-        reponse = input()
-        if reponse == "y":
-            return self.tournament_view.tournamentStar()
-        else:
-            return self.tournament_view.endView()
-
+        answer = self.tournament_view.startView()
+        return answer
+    
+    def end_tournament(self):
+        message = self.tournament_view.endView()
+        return message
+       
     def creationTournement(self):
         list = self.tournament_view.tournamentCreation()
         self.tournament.__init__(list[0], list[1], list[2], list[3])
@@ -35,6 +34,9 @@ class TournamentContoller:
         start_message = self.tournament_view.startMessage(self.tournament_data[0][0])
         return start_message
     
+    def showEndTournament(self):
+        self.tournament_view.endView()
+    
     def createList(self):
         self.tournament.players_list = self.players
         self.tournament.tours_list = self.round
@@ -45,7 +47,6 @@ class TournamentContoller:
         for player in liste:    
             self.tournament_view.show(player)
 
-    
     def save(self):
         db = TinyDB("db.json")
         table_tournoi = db.table("joueurs")
