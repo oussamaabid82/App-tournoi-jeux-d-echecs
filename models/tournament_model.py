@@ -25,8 +25,7 @@ class TournamentModels:
         l = self.players_list       
         if answer == 1:
             list_sorted_by_name = (sorted(l, key=lambda l:l.nom_de_famille))
-            for i in list_sorted_by_name:
-                return i
+            return list_sorted_by_name
         elif answer == 2:
             list_sorted_by_classement = (sorted(l, key=lambda l:l.classement))
             return list_sorted_by_classement

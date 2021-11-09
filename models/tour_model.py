@@ -49,7 +49,7 @@ class TourModel:
         return list_sort
 
     def updatePlayerClassementModel(self):
-            return self.players_list           
+            return self.players_list         
     
     def generatePaire(self):
         list_sort= self.sortPlayersByPoints()

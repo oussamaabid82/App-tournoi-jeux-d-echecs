@@ -48,7 +48,8 @@ class TournamentContoller:
     def reportPlayerController(self):
         answer = self.tournament_view.playerList()
         liste = self.tournament.reportPlayerModel(answer)
-        self.tournament_view.show(liste)
+        for player in liste: 
+            self.tournament_view.show(player.prenom)
 
     def reportTournamentController(self):
         for tournament in self.tournament.tournamentList:
@@ -58,6 +59,13 @@ class TournamentContoller:
         for round in self.tournament.tours_list:
             self.tournament_view.showRoundList(round)
     
+    def reportMatchListController(self):
+        self.tournament_view.messageMatchList()
+        for tour in self.tournament.tours_list:
+            match_list = tour.match_list
+        for match in match_list:
+            self.tournament_view.showMatch(match[0].prenom, match[1].prenom)
+
     def save(self):
         db = TinyDB("db.json")
         table_tournoi = db.table("joueurs")
