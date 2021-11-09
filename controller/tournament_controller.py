@@ -33,6 +33,14 @@ class TournamentContoller:
     def showEndTournament(self):
         self.tournament_view.endView()
     
+    def startReport(self):
+        answer = self.tournament_view.showRaportStart()
+        return answer
+    
+    def chooseRaportMenu(self):
+        answer = self.tournament_view.chooseNumberInMenu()
+        return answer
+    
     def createList(self):
         self.tournament.players_list = self.players
         self.tournament.tours_list = self.round
@@ -40,9 +48,16 @@ class TournamentContoller:
     def reportPlayerController(self):
         answer = self.tournament_view.playerList()
         liste = self.tournament.reportPlayerModel(answer)
-        
         self.tournament_view.show(liste)
 
+    def reportTournamentController(self):
+        for tournament in self.tournament.tournamentList:
+            self.tournament_view.showTournamentList(tournament.nom)
+    
+    def reportRoundController(self):
+        for round in self.tournament.tours_list:
+            self.tournament_view.showRoundList(round)
+    
     def save(self):
         db = TinyDB("db.json")
         table_tournoi = db.table("joueurs")

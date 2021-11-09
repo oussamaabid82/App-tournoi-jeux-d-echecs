@@ -35,5 +35,25 @@ class TournamentView:
         answer = input("Saisissez 1 ou 2: ")
         return(answer)
     
+    def showRaportStart(self):
+        answer = input("\nVoulez vous afficher les rapports? y/n: ")
+        return answer
+    
+    def chooseNumberInMenu(self):
+        print("\n***** R A P P O R T *****\n")
+        print("1- Liste de tous les joueurs")
+        print("2- Liste de tous les tournois")
+        print("3- Liste de tous les tours")
+        print("4- Liste de tous les matchs")
+        answer = input("Saisissez le numero de la liste que vous voulez afficher: ")
+        return int(answer)
+
+    def showTournamentList(self, tournament_list):
+        print(f"\n***** Liste des tournois *****")
+        print(f" * {tournament_list}")
+
+    def showRoundList(self, list):
+        print(list)
+
     def show(self, player):
         print(player)

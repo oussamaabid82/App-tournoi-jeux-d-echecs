@@ -14,8 +14,6 @@ class PlayerModel:
         self.classement = classement
         self.score = [] 
 
-
-          
     def serializationPlayer(self):
         serialization = {
             "nom": self.nom_de_famille,

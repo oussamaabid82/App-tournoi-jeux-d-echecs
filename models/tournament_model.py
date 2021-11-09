@@ -29,8 +29,8 @@ class TournamentModels:
                 return i
         elif answer == 2:
             list_sorted_by_classement = (sorted(l, key=lambda l:l.classement))
-            return list_sorted_by_classement 
-            
+            return list_sorted_by_classement
+
     def serialization_tournoi(self):
         serialisation = {
             "nom": self.nom,

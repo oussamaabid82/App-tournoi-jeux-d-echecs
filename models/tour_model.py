@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class TourModel:
     players_list = []
     round_list = []

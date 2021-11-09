@@ -20,9 +20,17 @@ if tournament_controller.startTournament() == "y":
 
     tour_controller.updatePlayerClassement()
 
-    tournament_controller.showEndTournament()
-
+    if tournament_controller.startReport() == "y":
+        if tournament_controller.chooseRaportMenu() == 1:
+            tournament_controller.reportPlayerController()
+        if tournament_controller.chooseRaportMenu() == 2:
+            tournament_controller.reportTournamentController()
+        if tournament_controller.chooseRaportMenu() == 3:
+            tournament_controller.reportRoundController()
+        tournament_controller.showEndTournament()
+    else:
+        tournament_controller.showEndTournament()
+    
 else:
     tournament_controller.showEndTournament()
 
-tournament_controller.reportPlayerController()
