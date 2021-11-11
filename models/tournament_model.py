@@ -39,6 +39,3 @@ class TournamentModels:
             "nombre de tour": self.nombre_de_tours
         }
         return serialisation
-
-
-    

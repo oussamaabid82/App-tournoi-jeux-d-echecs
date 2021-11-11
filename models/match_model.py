@@ -13,8 +13,3 @@ class MatchModel:
             "match": self.match
         }
         return serialisation
-    
-
-
-
-

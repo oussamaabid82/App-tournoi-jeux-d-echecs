@@ -1,4 +1,3 @@
-from tinydb import TinyDB
 from models.tour_model import TourModel
 from models.match_model import MatchModel
 from view.tour_view import TourView
@@ -11,7 +10,7 @@ class TourController:
         self.tour_view = TourView()
         self.match_view = MatchView()
         self.tour_models = TourModel()
- 
+
     def createFirstRound(self):
         """Création de la premiére round """
         self.tour_models.createTourList()
@@ -52,10 +51,3 @@ class TourController:
             prenom = player.prenom
             classement = player.classement
             self.tour_view.showUpdatePlayerClassement(nom, prenom, classement)
-
-    def save(self):
-        db = TinyDB("db.json")
-        table_tour = db.table("joueurs")
-        table_tour.truncate()	# clear the table first
-        tour_model = TourModel()
-        table_tour.insert_multiple(tour_model.serializationTour())  

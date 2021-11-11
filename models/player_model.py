@@ -1,7 +1,8 @@
 
 
 class PlayerModel: 
-    def __init__(self, nom_de_famille="", 
+    def __init__(
+                self, nom_de_famille="", 
                 prenom="", 
                 date_de_naissance="", 
                 sexe="", 

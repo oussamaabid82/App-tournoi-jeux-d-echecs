@@ -17,7 +17,7 @@ class TourModel:
         self.heure_de_debut = heure_de_debut
         self.date_fin = date_fin
         self.heure_fin = heure_fin
-    
+
     def createTourList(self):
         self.round_list.append(self)
 
@@ -37,7 +37,7 @@ class TourModel:
         list_sort = self.sortPlayersByRanking()
         lower_list = list_sort[int(len(list_sort)/2):]
         return lower_list
-    
+
     def genererPairOfPlayers(self):
         """Générer les paires de joueurs qui vont s'infronter au premier tour"""   
         pair_of_player = list(zip(self.topPlayersList(), self.lowerPlayerList())) 
@@ -50,7 +50,7 @@ class TourModel:
 
     def updatePlayerClassementModel(self):
             return self.players_list         
-    
+
     def generatePaire(self):
         list_sort= self.sortPlayersByPoints()
         list1 = reversed(list_sort[1::2])
