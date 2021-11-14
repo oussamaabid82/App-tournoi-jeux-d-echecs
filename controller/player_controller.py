@@ -1,5 +1,6 @@
 from tinydb import TinyDB
 from models.player_model import PlayerModel
+from models.tournament_model import TournamentModels
 from view.player_view import PlayerView
 
 
@@ -25,7 +26,11 @@ class PlayerController:
             players_table .insert(player_serialized)
         return players_table
 
-    def getPlayer(self):
+    def chooseSortPlayers(self):
+        anwer = self.player_view.playerList()
+        return anwer
+
+    def getPlayerSortedAlphabetical(self):
         name_list = []
         self.save
         db = TinyDB("save/db.json")
@@ -35,5 +40,18 @@ class PlayerController:
 
         l = name_list
         list_sort = (sorted(l, key=lambda l:l["nom"]))
+        for i in list_sort:
+            print(i["nom"])
+        
+    def getPlayerSortedClassement(self):
+        name_list = []
+        self.save
+        db = TinyDB("save/db.json")
+        players_table  = db.table("Player")
+        for i in players_table:
+            name_list.append(i)
+
+        l = name_list
+        list_sort = (sorted(l, key=lambda l:l["classement"]))
         for i in list_sort:
             print(i["nom"])

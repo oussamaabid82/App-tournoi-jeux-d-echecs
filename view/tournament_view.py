@@ -40,12 +40,6 @@ class TournamentView:
         answer = input("\nSaisissez le numero de la liste que vous voulez afficher: ")
         return int(answer)
     
-    def playerList(self):
-        print("\nAfficher la liste des joueurs:\n")
-        print(" 1: Par ordre Alphabetique")
-        print(" 2: Par classement\n")
-        answer = input("Saisissez 1 ou 2: \n")
-        return int(answer)
 
     def messaageTournamentRaport(self):
         print("\n***** Liste des tournois *****\n")
@@ -55,6 +49,16 @@ class TournamentView:
 
     def showRoundList(self, list):
         print(list)
+    
+    def showMatchsList(self, match):
+        print(match)
+    
+    def messageRoundsRaport(self):
+        print("\n***** Liste des tours *****\n")
+
+    def showRoundsList(self, round_list):
+        print(f" * {round_list}")
+
 
     def messageMatchList(self):
         print("\n***** Liste des matchs *****")

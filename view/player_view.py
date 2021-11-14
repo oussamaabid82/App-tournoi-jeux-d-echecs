@@ -15,3 +15,10 @@ class PlayerView:
 
     def introducePlayer(self, nom_de_famille, prenom, classement):
         print(f"___ le Joueur: {nom_de_famille} {prenom}, Classement: {classement} ___")
+
+    def playerList(self):
+        print("\nAfficher la liste des joueurs:\n")
+        print(" 1: Par ordre Alphabetique")
+        print(" 2: Par classement\n")
+        answer = input("Saisissez 1 ou 2: \n")
+        return int(answer)

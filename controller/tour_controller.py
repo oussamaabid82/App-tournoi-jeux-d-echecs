@@ -48,8 +48,6 @@ class TourController:
                 self.match_list.append(result)
             self.tour_view.finishTour(tour_models.nom_de_tour)
 
-
-
     def updatePlayerClassement(self):
         player_list = self.tour_models.updatePlayerClassementModel()
         for player in player_list:

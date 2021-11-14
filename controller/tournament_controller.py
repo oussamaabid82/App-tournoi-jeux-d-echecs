@@ -41,16 +41,16 @@ class TournamentContoller:
         self.tournament.tours_list = self.round
         self.tournament.match_list = self.matchs
 
-    def reportRoundController(self):
+    """ def reportRoundController(self):
         for round in self.tournament.tours_list:
-            self.tournament_view.showRoundList(round)
+            self.tournament_view.showRoundList(round)"""
 
-    def reportMatchListController(self):
+    """def reportMatchListController(self):
         self.tournament_view.messageMatchList()
         for tour in self.tournament.tours_list:
             match_list = tour.match_list
         for match in match_list:
-            self.tournament_view.showMatch(match[0].prenom, match[1].prenom)
+            self.tournament_view.showMatch(match[0].prenom, match[1].prenom)"""
 
     def save(self):
         db = TinyDB("save/db.json")
@@ -59,18 +59,34 @@ class TournamentContoller:
         return tournament_table
 
     def getTournament(self):
-        self.save
+        self.save()
         db = TinyDB("save/db.json")
         tournament_table = db.table("Tournament")
         self.tournament_view.messaageTournamentRaport()
         for i in tournament_table:
             self.tournament_view.showTournamentList(i["nom"])
 
+    def getRound(self):   
+        self.save()
+        db = TinyDB("save/db.json")
+        tournament_table = db.table("Tournament")
+        self.tournament_view.messageRoundsRaport()
+        for i in tournament_table:
+            self.tournament_view.showRoundsList(i["liste des tours"])
+    
+    def getMatchs(self):   
+        self.save()
+        db = TinyDB("save/db.json")
+        tournament_table = db.table("Tournament")
+        self.tournament_view.messageMatchList()
+        for i in tournament_table:
+            self.tournament_view.showMatchsList(i["liste des matchs"])
+
+    def showEndTournament(self):
+        self.tournament_view.endView()
+
     """def reportPlayerController(self):
         answer = self.tournament_view.playerList()
         liste = self.tournament.reportPlayerModel(answer)
         for player in liste:
             self.tournament_view.show(player.prenom)"""
-    
-    def showEndTournament(self):
-        self.tournament_view.endView()

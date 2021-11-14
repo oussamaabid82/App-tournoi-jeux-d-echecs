@@ -32,19 +32,26 @@ def play():
         tournament_controller.save()
 
         player_conroller.save()
-
     
     elif choice == 2:
         choice_menu = tournament_controller.chooseRaportMenu()
+        players_conroller = PlayerController()
+
         if choice_menu == 1:
-            PlayerController().getPlayer()
+            choose = players_conroller.chooseSortPlayers()
+            if choose == 1:
+                players_conroller.getPlayerSortedAlphabetical()
+            elif choose == 2:
+                players_conroller.getPlayerSortedClassement()
+
         elif choice_menu == 2:
             tournament_controller.getTournament()
+
         elif choice_menu == 3:
-            tournament_controller.reportRoundController()
+            tournament_controller.getRound()
+
         elif choice_menu == 4:
-            tournament_controller.reportMatchListController()
-        
+            tournament_controller.getMatchs()
             tournament_controller.showEndTournament()
 
     elif choice == 3:
