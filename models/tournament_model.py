@@ -2,6 +2,7 @@
 
 class TournamentModels:
     tournamentList = []
+
     def __init__(self, 
                 nom_du_tournoi="", 
                 lieu="", 
@@ -16,9 +17,10 @@ class TournamentModels:
         self.nombre_de_tours = nombre_de_tours
         self.players_list = []
         self.tours_list = []
+        self.match_list = []
 
-    def createTournamentList(self):
-        self.tournamentList.append(self)
+    """def createTournamentList(self):
+        self.tournamentList.append(self)"""
 
     def reportPlayerModel(self, view):
         answer = view 
@@ -29,13 +31,26 @@ class TournamentModels:
         elif answer == 2:
             list_sorted_by_classement = (sorted(l, key=lambda l:l.classement))
             return list_sorted_by_classement
-
+    
     def serialization_tournoi(self):
+        tour = []
+        matchs = []
+
+        for i in self.match_list:
+            p0 = i[0].serializationPlayer()["prenom"]
+            p1 = i[1].serializationPlayer()["prenom"]
+            matchs.append((p0, p1))
+  
+        for i in self.tours_list:
+            tour.append(i.nom_de_tour)
+
         serialisation = {
             "nom": self.nom,
             "lieu": self.lieu,
             "date de debut": self.date_debut,
             "date de la fin": self.date_fin,
-            "nombre de tour": self.nombre_de_tours
+            "nombre de tour": self.nombre_de_tours,
+            "liste des tours": tour,
+            "liste des matchs": matchs
         }
         return serialisation

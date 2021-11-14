@@ -4,37 +4,51 @@
 from controller.tournament_controller import TournamentContoller
 from controller.player_controller import PlayerController
 from controller.tour_controller import TourController
-from controller.match_controller import ControllerMatch
 
 
-tournament_controller = TournamentContoller()
-if tournament_controller.startTournament() == "y":
-    tournament_controller.creationTournement()
-    tournament_controller.save()
-
-    player_conroller = PlayerController()
-    players = player_conroller.createPlayers()
-    player_conroller.save()
-    tour_controller = TourController(players)
-    round = tour_controller.createFirstRound()
-    tour_controller.createNextRound()
-
-    tournament_controller.__init__(players, round)
-    tournament_controller.createList()
-
-    tour_controller.updatePlayerClassement()
+def play():
+    tournament_controller = TournamentContoller()
+    choice = tournament_controller.startTournament()
+    print(choice)
     
-if tournament_controller.startReport() == "y":
-    if tournament_controller.chooseRaportMenu() == 1:
-        tournament_controller.reportPlayerController()
-    elif tournament_controller.chooseRaportMenu() == 2:
-        tournament_controller.reportTournamentController()
-    elif tournament_controller.chooseRaportMenu() == 3:
-        tournament_controller.reportRoundController()
-    elif tournament_controller.chooseRaportMenu() == 4:
-        tournament_controller.reportMatchListController()
-    
-    tournament_controller.showEndTournament()
+    if choice == 1:
+        tournament_controller.showStartTournament()
+        tournament_controller.creationTournement()
+        
+        player_conroller = PlayerController()
+        players = player_conroller.createPlayers()
 
-else:
-    tournament_controller.showEndTournament()
+        tour_controller = TourController(players)
+        round = tour_controller.createFirstRound()
+        tour_controller.createNextRound()
+
+        match_list = tour_controller.match_list
+        
+        tournament_controller.__init__(players, round, match_list)
+        tournament_controller.createList()
+
+        tour_controller.updatePlayerClassement()
+
+        tournament_controller.save()
+
+        player_conroller.save()
+
+    
+    elif choice == 2:
+        choice_menu = tournament_controller.chooseRaportMenu()
+        if choice_menu == 1:
+            PlayerController().getPlayer()
+        elif choice_menu == 2:
+            tournament_controller.getTournament()
+        elif choice_menu == 3:
+            tournament_controller.reportRoundController()
+        elif choice_menu == 4:
+            tournament_controller.reportMatchListController()
+        
+            tournament_controller.showEndTournament()
+
+    elif choice == 3:
+        tournament_controller.showEndTournament()
+
+    else:
+        tournament_controller.showEndTournament()

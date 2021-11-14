@@ -18,7 +18,7 @@ class PlayerModel:
     def serializationPlayer(self):
         serialization = {
             "nom": self.nom_de_famille,
-            "prénom": self.prenom,
+            "prenom": self.prenom,
             "date de naissance": self.date_de_naissance,
             "sexe": self.sexe,
             "classement": self.classement

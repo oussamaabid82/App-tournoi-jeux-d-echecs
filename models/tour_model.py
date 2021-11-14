@@ -4,9 +4,9 @@ from datetime import datetime
 class TourModel:
     players_list = []
     round_list = []
-    match_list = []
+    #match_list = []
     """Les dates et les heures de debut et de la fin de la tour sont générés automatiquement"""
-    def __init__(self, nom_de_tour="Ronde",
+    def __init__(self, nom_de_tour,
                 date_de_debut=datetime.now().date(), 
                 heure_de_debut=datetime.now().time(), 
                 date_fin=datetime.now().date(), 

@@ -4,11 +4,11 @@ class TourView:
     def __init__(self):
         pass
 
-    def startTourView(self, round_name, number_of_round):
-        print(f"\n***** {round_name} {number_of_round} va commencer *****\n")
+    def startTourView(self, round_name):
+        print(f"\n***** {round_name} va commencer *****\n")
 
-    def finishTour(self, round_name, number_of_round):
-        print(f"\n***** {round_name} {number_of_round} est fini *****")
+    def finishTour(self, round_name):
+        print(f"\n***** {round_name} est fini *****")
 
     def showUpdatePlayerClassement(self, nom, prenom, classement):
         print(f"Veuillez mettre à jour le classement du joueur {nom} {prenom}:")

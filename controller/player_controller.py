@@ -7,25 +7,33 @@ class PlayerController:
     players_list_serialized = []
     def __init__(self):
         self.player_view = PlayerView()
-        self.player_model = PlayerModel()
 
     def createPlayers(self):
         players = []
         for i in range(self.player_view.numberOfPlayer()):
             joueur = self.player_view.playerData()
-            self.player_model.__init__(joueur[0], joueur[1], joueur[2], joueur[3], joueur[4])
-            self.player_view.introducePlayer(
-                                            self.player_model.nom_de_famille, self.player_model.prenom,
-                                            self.player_model.classement
-                                            )
-            players.append(self.player_model)
-            self.players_list_serialized.append(self.player_model.serializationPlayer())
+            player = PlayerModel(joueur[0], joueur[1], joueur[2], joueur[3], joueur[4])
+            self.player_view.introducePlayer(player.nom_de_famille, player.prenom, player.classement)
+            players.append(player)
+            self.players_list_serialized.append(player.serializationPlayer())
         return players
 
     def save(self):
-        
-        db = TinyDB("save/players/db.json")
-        players_table  = db.table("players")
-        players_table .truncate()  # clear the table first
+        db = TinyDB("save/db.json")
+        players_table  = db.table("Player")
         for player_serialized in self.players_list_serialized:
             players_table .insert(player_serialized)
+        return players_table
+
+    def getPlayer(self):
+        name_list = []
+        self.save
+        db = TinyDB("save/db.json")
+        players_table  = db.table("Player")
+        for i in players_table:
+            name_list.append(i)
+
+        l = name_list
+        list_sort = (sorted(l, key=lambda l:l["nom"]))
+        for i in list_sort:
+            print(i["nom"])
