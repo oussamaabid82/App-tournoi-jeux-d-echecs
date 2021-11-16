@@ -17,8 +17,11 @@ class TournamentView:
         print("\nVeuillez saisir les données suivantes\n")
 
     def tournamentCreation(self):
-        answer = input("Nom du tournoi: "), input("Lieu: "), input("Date de debut: "), input("Date de la fin: ")
-        return answer
+        liste = ["Nom du tournoi: ", "Lieu: ", "Date de debut: ", "Date de la fin: " ]
+        liste_answer = []
+        for i in liste:
+            liste_answer.append(input(i))
+        return liste_answer
 
     def startMessage(self, nom):
         """Afficher à l'utilisateur le debut du tournoi"""
@@ -39,7 +42,6 @@ class TournamentView:
         print("4- Liste de tous les matchs")
         answer = input("\nSaisissez le numero de la liste que vous voulez afficher: ")
         return int(answer)
-    
 
     def messaageTournamentRaport(self):
         print("\n***** Liste des tournois *****\n")

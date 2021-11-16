@@ -1,6 +1,7 @@
 
 
 class PlayerModel: 
+    players_list = []
     def __init__(
                 self, nom_de_famille="", 
                 prenom="", 
@@ -13,7 +14,10 @@ class PlayerModel:
         self.date_de_naissance = date_de_naissance
         self.sexe = sexe
         self.classement = classement
-        self.score = [] 
+        self.score = []
+
+    def creatPlayersList(self):
+        self.players_list.append(self)
 
     def serializationPlayer(self):
         serialization = {

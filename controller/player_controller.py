@@ -1,6 +1,5 @@
 from tinydb import TinyDB
 from models.player_model import PlayerModel
-from models.tournament_model import TournamentModels
 from view.player_view import PlayerView
 
 
@@ -18,6 +17,14 @@ class PlayerController:
             players.append(player)
             self.players_list_serialized.append(player.serializationPlayer())
         return players
+
+    def updatePlayerClassement(self):
+        player_list = self.tour_models.updatePlayerClassementModel()
+        for player in player_list:
+            nom = player.nom_de_famille
+            prenom = player.prenom
+            classement = player.classement
+            self.tour_view.showUpdatePlayerClassement(nom, prenom, classement)
 
     def save(self):
         db = TinyDB("save/db.json")
