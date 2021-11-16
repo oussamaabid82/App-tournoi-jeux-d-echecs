@@ -1,4 +1,5 @@
-from tinydb import TinyDB
+from typing import List
+from tinydb import TinyDB, Query
 from view.tournament_view import TournamentView
 from models.tournament_model import TournamentModels
 
@@ -46,13 +47,21 @@ class TournamentContoller:
         for i in tournament_table:
             self.tournament_view.showTournamentList(i["nom"])
 
-    def getRound(self):   
+    def getRound(self):  
+        number_tournament = []
+        list_of_tournament = []
         db = TinyDB("save/db.json")
         tournament_table = db.table("Tournament")
+        [number_tournament.append(number + 1) for number in range(len(tournament_table))]
+        [list_of_tournament.append(tournament["nom"]) for tournament in tournament_table]
+        liste = tuple(zip(number_tournament, list_of_tournament))
+        for i in liste:
+            self.tournament_view.show(i)
+        number = self.tournament_view.chooseNumberOfTurnament()
+        result = (tournament_table.get(doc_id=number))["liste des tours"]
         self.tournament_view.messageRoundsRaport()
-        for i in tournament_table:
-            self.tournament_view.showRoundsList(i["liste des tours"])
-    
+        self.tournament_view.show(result)
+        
     def getMatchs(self):   
         db = TinyDB("save/db.json")
         tournament_table = db.table("Tournament")

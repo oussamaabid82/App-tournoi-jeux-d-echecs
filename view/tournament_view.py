@@ -58,8 +58,12 @@ class TournamentView:
     def messageRoundsRaport(self):
         print("\n***** Liste des tours *****\n")
 
-    def showRoundsList(self, round_list):
-        print(f" * {round_list}")
+    def chooseNumberOfTurnament(self):
+        number = int(input("\nSaisissez le N° du tournoi: "))
+        return number
+    
+    def show(self, tournament):
+        print(tournament)
 
 
     def messageMatchList(self):
