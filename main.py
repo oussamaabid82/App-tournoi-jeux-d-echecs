@@ -27,6 +27,7 @@ def play():
 
         tournament_controller.round = round
         tournament_controller.matchs = match_list
+        tournament_controller.players = players
         tournament_controller.createList()
         tournament_controller.save()
 
@@ -42,14 +43,17 @@ def play():
                 players_conroller.getPlayerSortedAlphabetical()
             elif choose == 2:
                 players_conroller.getPlayerSortedClassement()
-        
+         
         if choice_menu == 2:
+            tournament_controller.getPlayersInTournament()
+        
+        if choice_menu == 3:
             tournament_controller.getTournament()
 
-        if choice_menu == 3:
+        if choice_menu == 4:
             tournament_controller.getRound()
 
-        if choice_menu == 4:
+        if choice_menu == 5:
             tournament_controller.getMatchs()
             tournament_controller.showEndTournament()
 

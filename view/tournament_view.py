@@ -36,10 +36,11 @@ class TournamentView:
 
     def chooseNumberInMenu(self):
         print("\n***** R A P P O R T *****\n")
-        print("1- Liste de tous les joueurs")
-        print("2- Liste de tous les tournois")
-        print("3- Liste de tous les tours")
-        print("4- Liste de tous les matchs")
+        print("1- Liste de tous les acteurs")
+        print("2- Liste des joueurs dans un tournoi")
+        print("3- Liste de tous les tournois")
+        print("4- Liste des tours dans un tournoi")
+        print("5- Liste des matchs dans un tournoi")
         answer = input("\nSaisissez le numero de la liste que vous voulez afficher: ")
         return int(answer)
 
@@ -58,19 +59,21 @@ class TournamentView:
     def messageRoundsRaport(self):
         print("\n***** Liste des tours *****\n")
 
-    def chooseNumberOfTurnament(self):
+    def chooseNumberOfTournament(self):
         number = int(input("\nSaisissez le N° du tournoi: "))
         return number
     
+    def viewTours(self):
+        print("")
+
+    def showListTournamentWithNumber(self, numero, tournament):
+        print(f"{numero}- {tournament}")
+    
     def show(self, tournament):
         print(tournament)
-
 
     def messageMatchList(self):
         print("\n***** Liste des matchs *****")
 
     def endView(self):
         print("\n-----------------* A LA PROCHAINE *-----------------")
-
-    """def show(self, player):
-        print(player)"""

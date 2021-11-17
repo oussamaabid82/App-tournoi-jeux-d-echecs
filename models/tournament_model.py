@@ -14,6 +14,7 @@ class TournamentModels:
         self.date_debut = date_debut
         self.date_fin = date_fin
         self.nombre_de_tours = nombre_de_tours
+        self.players_list = []
         self.tours_list = []
         self.match_list = []
 
@@ -34,8 +35,12 @@ class TournamentModels:
         return self.match_list
     
     def serialization_tournoi(self):
+        players = []
         tour = []
         matchs = []
+
+        for i in self.players_list:
+            players.append((i.prenom, i.nom_de_famille))
 
         for i in self.match_list:
             p0 = i[0].serializationPlayer()["prenom"]
@@ -51,6 +56,7 @@ class TournamentModels:
             "date de debut": self.date_debut,
             "date de la fin": self.date_fin,
             "nombre de tour": self.nombre_de_tours,
+            "list des joueurs": players,
             "liste des tours": tour,
             "liste des matchs": matchs
         }

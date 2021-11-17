@@ -1,14 +1,14 @@
-from typing import List
-from tinydb import TinyDB, Query
+from tinydb import TinyDB
 from view.tournament_view import TournamentView
 from models.tournament_model import TournamentModels
 
 
 class TournamentContoller:
-    def __init__(self, round="", matchs=""):
+    def __init__(self, players="", round="", matchs=""):
 
         self.round = round
         self.matchs = matchs
+        self.players = players
         self.tournament = TournamentModels()
         self.tournament_view = TournamentView()
 
@@ -31,6 +31,7 @@ class TournamentContoller:
         self.tournament_view.tournamentStar()
 
     def createList(self):
+        self.tournament.players_list = self.players
         self.tournament.tours_list = self.round
         self.tournament.match_list = self.matchs
 
@@ -46,8 +47,8 @@ class TournamentContoller:
         self.tournament_view.messaageTournamentRaport()
         for i in tournament_table:
             self.tournament_view.showTournamentList(i["nom"])
-
-    def getRound(self):  
+        
+    def listTournamentWitnNumbers(self):
         number_tournament = []
         list_of_tournament = []
         db = TinyDB("save/db.json")
@@ -55,19 +56,52 @@ class TournamentContoller:
         [number_tournament.append(number + 1) for number in range(len(tournament_table))]
         [list_of_tournament.append(tournament["nom"]) for tournament in tournament_table]
         liste = tuple(zip(number_tournament, list_of_tournament))
-        for i in liste:
-            self.tournament_view.show(i)
-        number = self.tournament_view.chooseNumberOfTurnament()
-        result = (tournament_table.get(doc_id=number))["liste des tours"]
-        self.tournament_view.messageRoundsRaport()
-        self.tournament_view.show(result)
-        
-    def getMatchs(self):   
+        return liste
+
+
+    def getPlayersInTournament(self):
+        name_list = []
         db = TinyDB("save/db.json")
         tournament_table = db.table("Tournament")
+        for i in self.listTournamentWitnNumbers():
+            self.tournament_view.showListTournamentWithNumber(i[0], i[1])
+        number = self.tournament_view.chooseNumberOfTournament()
+        result = (tournament_table.get(doc_id=number))["list des joueurs"]
+        for i in result:
+            name_list.append((i[0], i[1]))
+        l = name_list
+        list_sort = (sorted(l, key=lambda l:l))
+        for player in list_sort:
+            self.tournament_view.show(f"{player[0]} {player[1]}")
+
+
+    def getRound(self):  
+        db = TinyDB("save/db.json")
+        tournament_table = db.table("Tournament")
+        for i in self.listTournamentWitnNumbers():
+            self.tournament_view.showListTournamentWithNumber(i[0], i[1])
+        number = self.tournament_view.chooseNumberOfTournament()
+        result = (tournament_table.get(doc_id=number))["liste des tours"]
+        self.tournament_view.messageRoundsRaport()
+        for round in result:
+            self.tournament_view.show(round)
+
+    def getMatchs(self):
+        number_match = []
+        list_of_tournament = []  
+        db = TinyDB("save/db.json")
+        tournament_table = db.table("Tournament")
+        [number_match.append(number + 1) for number in range(len(tournament_table))]
+        [list_of_tournament.append(tournament["nom"]) for tournament in tournament_table]
+        liste = tuple(zip(number_match, list_of_tournament))
+        self.tournament_view.messaageTournamentRaport()
+
+        for i in liste:
+            self.tournament_view.showListTournamentWithNumber(i[0], i[1])
+        number = self.tournament_view.chooseNumberOfTournament()
+        result = (tournament_table.get(doc_id=number))["liste des matchs"]
         self.tournament_view.messageMatchList()
-        for i in tournament_table:
-            self.tournament_view.showMatchsList(i["liste des matchs"])
+        self.tournament_view.show(result)
 
     def showEndTournament(self):
         self.tournament_view.endView()

@@ -39,7 +39,7 @@ class PlayerController:
 
     def getPlayerSortedAlphabetical(self):
         name_list = []
-        self.save
+        #self.save
         db = TinyDB("save/db.json")
         players_table  = db.table("Player")
         for i in players_table:
@@ -52,7 +52,7 @@ class PlayerController:
         
     def getPlayerSortedClassement(self):
         name_list = []
-        self.save
+        #self.save
         db = TinyDB("save/db.json")
         players_table  = db.table("Player")
         for i in players_table:
