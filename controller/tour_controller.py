@@ -10,7 +10,7 @@ class TourController:
         self.match_list = []
         self.tour_view = TourView()
         self.match_view = MatchView()
-        self.tour_models = TourModel("Ronde 1")
+        self.tour_models = TourModel("Ronde1")
 
     def createFirstRound(self):
         """Création de la premiére round """

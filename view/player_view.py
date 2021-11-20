@@ -22,11 +22,24 @@ class PlayerView:
         print(" 2: Par classement\n")
         answer = input("Saisissez 1 ou 2: \n")
         return int(answer)
-    
+
+    def messagePlayerSortedAlphabetical(self):
+        print("\nListe des joueurs trier par ordre alphbetique\n")
+        print(" {NOM}      {PRENOM}")
+        print("----------+----------")
+        
+    def messagePlayerSortedClassement(self):
+        print("\nListe des joueurs trier par classement\n")
+        print(" {NOM}      {PRENOM}")
+        print("----------+----------")
+
+    def showPlayerName(self, nom, prenom):
+        print(f"{nom}           {prenom}")
+
     def showUpdatePlayerClassement(self, nom, prenom, classement):
         print(f"Veuillez mettre à jour le classement du joueur {nom} {prenom}:")
         print(f"Son ancien classement est {classement}")
-        classement = int(input("Saisissez le nouveau classement : "))
+        classement = int(input("Saisissez son nouveau classement : "))
         print("")
         return classement
     

@@ -49,8 +49,9 @@ class PlayerController:
             name_list.append(i)
         l = name_list
         list_sort = (sorted(l, key=lambda l:l["nom"]))
+        self.player_view.messagePlayerSortedAlphabetical()
         for i in list_sort:
-            print(i["nom"])
+            self.player_view.showPlayerName(i["nom"], i["prenom"])
         
     def getPlayerSortedClassement(self):
         name_list = []
@@ -59,9 +60,10 @@ class PlayerController:
         for i in players_table:
             name_list.append(i)
         l = name_list
+        self.player_view.messagePlayerSortedClassement()
         list_sort = (sorted(l, key=lambda l:l["classement"]))
         for i in list_sort:
-            print(i["nom"])
+            self.player_view.showPlayerName(i["nom"], i["prenom"])
     
     
 

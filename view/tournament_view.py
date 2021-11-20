@@ -11,7 +11,7 @@ class TournamentView:
         print("[2] - Rapports")
         print("[3] - MAJ classement")
         print("[4] - Quitter")
-        answer = int(input("Saisissez votre choix: "))
+        answer = int(input("\nSaisissez votre choix: "))
         return answer
 
     def tournamentStar(self):
@@ -29,7 +29,7 @@ class TournamentView:
         print(f"\nTournoi {nom} à commencer\n")
     
     def showMatch(self, player1, player2):
-        print(f"{player1} Vs {player2}")
+        print(f"{player1}   Vs   {player2}")
 
     def endMessage(self):
         """Afficher à l'utilisateur la fin du tournoi"""
@@ -57,10 +57,18 @@ class TournamentView:
     def showMatchsList(self, match):
         print(match)
     
+    def messagePlayerSortedInTournament(self):
+        print("\nListe des joueurs trier par ordre alphbetique\n")
+        print(" {NOM}      {PRENOM}")
+        print("----------+----------")
+    
     def messageRoundsRaport(self):
         print("\n***** Liste des tours *****\n")
 
-    def messageTourInTournament(self):
+    def messageToursInTournament(self):
+        print("\nChoisissez quel tournoi vous voulez afficher ses tours\n")
+
+    def messageMatchInTournament(self):
         print("\nChoisissez quel tournoi vous voulez afficher ses matchs")
 
     def chooseNumberOfTournament(self):
@@ -69,6 +77,9 @@ class TournamentView:
     
     def viewTours(self):
         print("")
+    
+    def showPlayerName(self, nom, prenom):
+        print(f"{nom}           {prenom}")
 
     def showListTournamentWithNumber(self, numero, tournament):
         print(f"{numero}- {tournament}")

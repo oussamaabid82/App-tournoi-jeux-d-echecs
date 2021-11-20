@@ -69,16 +69,20 @@ class TournamentContoller:
             name_list.append((i[0], i[1]))
         l = name_list
         list_sort = (sorted(l, key=lambda l:l))
+        self.tournament_view.messagePlayerSortedInTournament()
         for player in list_sort:
-            self.tournament_view.show(f"{player[0]} {player[1]}")
+            self.tournament_view.showPlayerName(player[0], player[1])
 
     def getRound(self):  
         db = TinyDB("save/db.json")
         tournament_table = db.table("Tournament")
+        self.tournament_view.messageToursInTournament()
         for i in self.listTournamentWitnNumbers():
             self.tournament_view.showListTournamentWithNumber(i[0], i[1])
+        
         number = self.tournament_view.chooseNumberOfTournament()
         result = (tournament_table.get(doc_id=number))["liste des tours"]
+        
         self.tournament_view.messageRoundsRaport()
         for round in result:
             self.tournament_view.show(round)
@@ -91,7 +95,7 @@ class TournamentContoller:
         [number_match.append(number + 1) for number in range(len(tournament_table))]
         [list_of_tournament.append(tournament["nom"]) for tournament in tournament_table]
         liste = tuple(zip(number_match, list_of_tournament))
-        self.tournament_view.messageTourInTournament()
+        self.tournament_view.messageMatchInTournament()
         self.tournament_view.messaageTournamentRaport()
         for i in liste:
             self.tournament_view.showListTournamentWithNumber(i[0], i[1])
