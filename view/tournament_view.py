@@ -9,7 +9,8 @@ class TournamentView:
         print("\n---------------* B I E N V E N U E *---------------\n")
         print("[1] - Creez un nouveau tournoi")
         print("[2] - Rapports")
-        print("[3] - Quitter")
+        print("[3] - MAJ classement")
+        print("[4] - Quitter")
         answer = int(input("Saisissez votre choix: "))
         return answer
 
@@ -59,8 +60,11 @@ class TournamentView:
     def messageRoundsRaport(self):
         print("\n***** Liste des tours *****\n")
 
+    def messageTourInTournament(self):
+        print("\nChoisissez quel tournoi vous voulez afficher ses matchs")
+
     def chooseNumberOfTournament(self):
-        number = int(input("\nSaisissez le N° du tournoi: "))
+        number = int(input("\nChoisissez le numero du tournoi: "))
         return number
     
     def viewTours(self):
@@ -73,7 +77,7 @@ class TournamentView:
         print(tournament)
 
     def messageMatchList(self):
-        print("\n***** Liste des matchs *****")
+        print("\n***** Liste des matchs *****\n")
 
     def endView(self):
         print("\n-----------------* A LA PROCHAINE *-----------------")

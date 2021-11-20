@@ -18,7 +18,7 @@ class PlayerModel:
 
     def creatPlayersList(self):
         self.players_list.append(self)
-
+    
     def serializationPlayer(self):
         serialization = {
             "nom": self.nom_de_famille,

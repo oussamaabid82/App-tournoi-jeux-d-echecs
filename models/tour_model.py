@@ -48,8 +48,8 @@ class TourModel:
         list_sort = (sorted(l, key=lambda l:sum(l.score)))
         return list_sort
 
-    def updatePlayerClassementModel(self):
-            return self.players_list         
+    """def updatePlayerClassementModel(self):
+            return self.players_list"""         
 
     def generatePaire(self):
         list_sort= self.sortPlayersByPoints()

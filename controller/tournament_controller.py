@@ -5,7 +5,6 @@ from models.tournament_model import TournamentModels
 
 class TournamentContoller:
     def __init__(self, players="", round="", matchs=""):
-
         self.round = round
         self.matchs = matchs
         self.players = players
@@ -58,7 +57,6 @@ class TournamentContoller:
         liste = tuple(zip(number_tournament, list_of_tournament))
         return liste
 
-
     def getPlayersInTournament(self):
         name_list = []
         db = TinyDB("save/db.json")
@@ -73,7 +71,6 @@ class TournamentContoller:
         list_sort = (sorted(l, key=lambda l:l))
         for player in list_sort:
             self.tournament_view.show(f"{player[0]} {player[1]}")
-
 
     def getRound(self):  
         db = TinyDB("save/db.json")
@@ -94,14 +91,15 @@ class TournamentContoller:
         [number_match.append(number + 1) for number in range(len(tournament_table))]
         [list_of_tournament.append(tournament["nom"]) for tournament in tournament_table]
         liste = tuple(zip(number_match, list_of_tournament))
+        self.tournament_view.messageTourInTournament()
         self.tournament_view.messaageTournamentRaport()
-
         for i in liste:
             self.tournament_view.showListTournamentWithNumber(i[0], i[1])
         number = self.tournament_view.chooseNumberOfTournament()
         result = (tournament_table.get(doc_id=number))["liste des matchs"]
         self.tournament_view.messageMatchList()
-        self.tournament_view.show(result)
-
+        for i in result:
+            self.tournament_view.showMatch(i[0], i[1])
+        
     def showEndTournament(self):
         self.tournament_view.endView()

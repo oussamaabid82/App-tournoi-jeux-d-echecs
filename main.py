@@ -15,7 +15,8 @@ def play():
         tournament_controller.creationTournement()
         
         player_conroller = PlayerController()
-        players = player_conroller.createPlayers()
+        player_conroller.createPlayers()
+        players = player_conroller.players
 
         tour_controller = TourController(players)
         round = tour_controller.createFirstRound()
@@ -23,15 +24,16 @@ def play():
 
         match_list = tour_controller.match_list
 
-        tour_controller.updatePlayerClassement()
-
         tournament_controller.round = round
         tournament_controller.matchs = match_list
         tournament_controller.players = players
         tournament_controller.createList()
-        tournament_controller.save()
 
+        player_conroller.updateClassementAfterMatch()
+
+        tournament_controller.save()
         player_conroller.save()
+        tournament_controller.showEndTournament()
 
     elif choice == 2:
         choice_menu = tournament_controller.chooseRaportMenu()
@@ -39,14 +41,15 @@ def play():
 
         if choice_menu == 1:
             choose = players_conroller.chooseSortPlayers()
+    
             if choose == 1:
                 players_conroller.getPlayerSortedAlphabetical()
             elif choose == 2:
                 players_conroller.getPlayerSortedClassement()
-         
+
         if choice_menu == 2:
             tournament_controller.getPlayersInTournament()
-        
+                    
         if choice_menu == 3:
             tournament_controller.getTournament()
 
@@ -55,9 +58,12 @@ def play():
 
         if choice_menu == 5:
             tournament_controller.getMatchs()
-            tournament_controller.showEndTournament()
 
     elif choice == 3:
+        players_conroller = PlayerController()
+        players_conroller.updateClassement()
+        
+    elif choice == 4:
         tournament_controller.showEndTournament()
 
     else:
