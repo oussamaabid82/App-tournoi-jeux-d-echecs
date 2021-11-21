@@ -1,12 +1,12 @@
 
 
-class PlayerModel: 
+class PlayerModel:
     players_list = []
     def __init__(
-                self, nom_de_famille="", 
-                prenom="", 
-                date_de_naissance="", 
-                sexe="", 
+                self, nom_de_famille="",
+                prenom="",
+                date_de_naissance="",
+                sexe="",
                 classement=int
                 ):
         self.nom_de_famille = nom_de_famille
@@ -18,7 +18,7 @@ class PlayerModel:
 
     def creatPlayersList(self):
         self.players_list.append(self)
-    
+
     def serializationPlayer(self):
         serialization = {
             "nom": self.nom_de_famille,

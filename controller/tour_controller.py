@@ -21,7 +21,7 @@ class TourController:
         self.match_view.starMatchView()
         for pair in self.tour_models.genererPairOfPlayers():
             self.match_view.playerMatch(pair)
-            
+
         for pair in self.tour_models.genererPairOfPlayers():
             result = self.match_view.enterMatchResults(pair)
             match_model = MatchModel(result)
@@ -30,9 +30,10 @@ class TourController:
         return(self.tour_models.round_list)
 
     def createNextRound(self):
-        n=1
+        """Création des prochaines tours"""
+        n = 1
         for round in range(len(self.players)-2):
-            n+=1
+            n += 1
             nom = "Ronde" + str(n)
             tour_models = TourModel(nom)
             tour_models.createTourList()
@@ -41,10 +42,9 @@ class TourController:
             self.match_view.starMatchView()
             for pair in tour_models.generatePaire():
                 self.match_view.playerMatch(pair)
-                
+
             for pair in tour_models.generatePaire():
                 result = self.match_view.enterMatchResults(pair)
                 match_model = MatchModel(result)
                 self.match_list.append(result)
             self.tour_view.finishTour(tour_models.nom_de_tour)
-   

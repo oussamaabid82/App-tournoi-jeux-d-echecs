@@ -9,11 +9,11 @@ from controller.tour_controller import TourController
 def play():
     tournament_controller = TournamentContoller()
     choice = tournament_controller.startTournament()
-    
+
     if choice == 1:
         tournament_controller.showStartTournament()
         tournament_controller.creationTournement()
-        
+
         player_conroller = PlayerController()
         player_conroller.createPlayers()
         players = player_conroller.players
@@ -41,7 +41,7 @@ def play():
 
         if choice_menu == 1:
             choose = players_conroller.chooseSortPlayers()
-    
+
             if choose == 1:
                 players_conroller.getPlayerSortedAlphabetical()
             elif choose == 2:
@@ -49,7 +49,7 @@ def play():
 
         if choice_menu == 2:
             tournament_controller.getPlayersInTournament()
-                    
+
         if choice_menu == 3:
             tournament_controller.getTournament()
 
@@ -62,7 +62,7 @@ def play():
     elif choice == 3:
         players_conroller = PlayerController()
         players_conroller.updateClassement()
-        
+
     elif choice == 4:
         tournament_controller.showEndTournament()
 

@@ -4,12 +4,12 @@ from datetime import datetime
 class TourModel:
     players_list = []
     round_list = []
-    #match_list = []
+
     """Les dates et les heures de debut et de la fin de la tour sont générés automatiquement"""
     def __init__(self, nom_de_tour,
-                date_de_debut=datetime.now().date(), 
-                heure_de_debut=datetime.now().time(), 
-                date_fin=datetime.now().date(), 
+                date_de_debut=datetime.now().date(),
+                heure_de_debut=datetime.now().time(),
+                date_fin=datetime.now().date(),
                 heure_fin=datetime.now().time()
                 ):
         self.nom_de_tour = nom_de_tour
@@ -23,36 +23,36 @@ class TourModel:
 
     def sortPlayersByRanking(self):
         """Trier les joueurs en fonction de leur classement"""
-        l = self.players_list
-        list_sort = (sorted(l, key=lambda l:l.classement))
+        list = self.players_list
+        list_sort = (sorted(list, key=lambda list: list.classement))
         return list_sort
 
     def topPlayersList(self):
-        """Divisez les joueurs en deux moitiés, une supérieure et une inférieure"""
+        """Divisez les joueurs en deux moitiés, une supérieure """
         list_sort = self.sortPlayersByRanking()
         top_list = list_sort[:int(len(list_sort)/2)]
         return top_list
 
     def lowerPlayerList(self):
+        """et une inférieure"""
         list_sort = self.sortPlayersByRanking()
         lower_list = list_sort[int(len(list_sort)/2):]
         return lower_list
 
     def genererPairOfPlayers(self):
-        """Générer les paires de joueurs qui vont s'infronter au premier tour"""   
-        pair_of_player = list(zip(self.topPlayersList(), self.lowerPlayerList())) 
+        """Générer les paires de joueurs qui vont s'infronter au premier tour"""
+        pair_of_player = list(zip(self.topPlayersList(), self.lowerPlayerList()))
         return pair_of_player
 
     def sortPlayersByPoints(self):
-        l = self.players_list
-        list_sort = (sorted(l, key=lambda l:sum(l.score)))
+        """"Trier la liste des joueurs par nombre de points"""
+        list = self.players_list
+        list_sort = (sorted(list, key=lambda list: sum(list.score)))
         return list_sort
 
-    """def updatePlayerClassementModel(self):
-            return self.players_list"""         
-
     def generatePaire(self):
-        list_sort= self.sortPlayersByPoints()
+        """Générer des paires de joueurs """
+        list_sort = self.sortPlayersByPoints()
         list1 = reversed(list_sort[1::2])
         list2 = reversed(list_sort[::2])
         paire = list(zip(list1, list2))
