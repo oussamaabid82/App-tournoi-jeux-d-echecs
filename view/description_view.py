@@ -1,10 +1,11 @@
 
 
 class DescriptionView:
-    # Remarque générales du directeur du tournoi
     def __init__(self):
         pass
-    
-    def show(self):
-        description = input("saisisser vos remarques: ")
-        print(description)
+
+    def showDescription(self):
+        """Remarque générales du directeur du tournoi"""
+        print("***** LES REMARQUES DE L'ADMINISTRATEUR *****\n")
+        description = str(input("Saisisser vos remarques: "))
+        return description

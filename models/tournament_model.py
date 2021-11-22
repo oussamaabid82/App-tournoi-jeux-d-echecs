@@ -1,7 +1,8 @@
 
 
 class TournamentModels:
-    def __init__(self,
+    def __init__(
+                self,
                 nom_du_tournoi="",
                 lieu="",
                 date_debut="",
@@ -13,6 +14,7 @@ class TournamentModels:
         self.date_debut = date_debut
         self.date_fin = date_fin
         self.nombre_de_tours = nombre_de_tours
+        self.descriptions = str
         self.players_list = []
         self.tours_list = []
         self.match_list = []
@@ -24,6 +26,9 @@ class TournamentModels:
     def matchs_list(self):
         """Importer la liste des matchs"""
         return self.match_list
+
+    def tournamentDescriptionsModel(self, descriptions):
+        self.descriptions = descriptions
 
     def serialization_tournoi(self):
         players = []
@@ -49,6 +54,7 @@ class TournamentModels:
             "nombre de tour": self.nombre_de_tours,
             "list des joueurs": players,
             "liste des tours": tour,
-            "liste des matchs": matchs
+            "liste des matchs": matchs,
+            "Descriptions": self.descriptions
         }
         return serialisation

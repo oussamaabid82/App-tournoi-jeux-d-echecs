@@ -31,6 +31,7 @@ def play():
 
         player_conroller.updateClassementAfterMatch()
 
+        tournament_controller.tournamentDescriptionsController()
         tournament_controller.save()
         player_conroller.save()
         tournament_controller.showEndTournament()
@@ -48,7 +49,7 @@ def play():
                 players_conroller.getPlayerSortedClassement()
 
         if choice_menu == 2:
-            tournament_controller.getPlayersInTournament()
+            tournament_controller.getPlayersInTournamentAlphbetical()
 
         if choice_menu == 3:
             tournament_controller.getTournament()

@@ -2,6 +2,7 @@
 
 class PlayerModel:
     players_list = []
+
     def __init__(
                 self, nom_de_famille="",
                 prenom="",

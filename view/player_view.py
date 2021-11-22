@@ -7,8 +7,8 @@ class PlayerView:
     def numberOfPlayer(self):
         """Nombre des joueurs qui vont jouer un tournoi"""
         number_of_player = int(input("\nVeuillez saisir le nombre de participant (un nombre pair): "))
-        while number_of_player %2 != 0:
-           number_of_player = int(input("\nVeuillez saisir le nombre de participant (un nombre pair): "))
+        while number_of_player % 2 != 0:
+            number_of_player = int(input("\nVeuillez saisir le nombre de participant (un nombre pair): "))
         return number_of_player
 
     def playerData(self):
@@ -16,7 +16,6 @@ class PlayerView:
         list_data = []
         for i in data:
             list_data.append(input(i))
-        #(input("\n* Nom: "), input("* Prenom: "), input("* Date de naissance: "), input("* Sexe: "), input("* Classement:"))
         return list_data
 
     def introducePlayer(self, nom_de_famille, prenom, classement):
@@ -40,24 +39,24 @@ class PlayerView:
     def messagePlayerSortedAlphabetical(self):
         """En-tête de la liste des joueurs"""
         print("\nListe des joueurs trier par ordre alphbetique\n")
-        print(" {NOM}      {PRENOM}")
-        print("----------+----------")
-        
+        print("{N}|   {NOM}   |  {PRENOM}  | {CLASSEMENT} ")
+        print("---+-----------+------------+--------------")
+
     def messagePlayerSortedClassement(self):
         """En-tête de la liste des joueurs"""
         print("\nListe des joueurs trier par classement\n")
-        print(" {NOM}      {PRENOM}")
-        print("----------+----------")
+        print("{N}|   {NOM}   |  {PRENOM}  | {CLASSEMENT} ")
+        print("---+-----------+------------+--------------")
 
-    def showPlayerName(self, nom, prenom):
+    def showPlayerName(self, rang, nom, prenom, classement):
         """Corps de la liste des joueurs"""
-        print(f"{nom}           {prenom}")
+        print(f" {rang} |    {nom}     |     {prenom}     |        {classement} ")
 
     def showMAJ(self):
         print("\n***** Mise a jour du classement d'un joueur *****\n")
-    
+
     def showUdateClassementnsertName(self):
         return input("Saisissez le nom du joueur: ")
-    
+
     def showNewClassement(self):
         return int(input("Saisissez le nouveau classement: "))

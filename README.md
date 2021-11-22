@@ -26,7 +26,7 @@
 	- Maintenant pour démarrer le programme il faut taper dans votre terminal:
 
 		```shell
-		python main.py
+		python ctm.py
 		```
 
 * ### Fabriqué avec

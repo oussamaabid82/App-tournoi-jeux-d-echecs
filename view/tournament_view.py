@@ -16,7 +16,7 @@ class TournamentView:
 
     def initializationOfATournament(self):
         """Initialisation d'un tournoi"""
-        liste = ["Nom du tournoi: ", "Lieu: ", "Date de debut: ", "Date de la fin: " ]
+        liste = ["Nom du tournoi: ", "Lieu: ", "Date de debut: ", "Date de la fin: "]
         liste_answer = []
         for i in liste:
             liste_answer.append(input(i))
@@ -33,7 +33,7 @@ class TournamentView:
         print("\n***** Liste des matchs *****\n")
 
     def showMatch(self, player1, player2):
-        print(f"{player1}   Vs   {player2}")
+        print(f"    {player1}   Vs   {player2}")
 
     def endMessage(self):
         """Afficher à l'utilisateur la fin du tournoi"""
@@ -52,18 +52,18 @@ class TournamentView:
     def titelTournamentRaport(self):
         print("\n***** Liste des tournois *****\n")
 
-    def showTournamentList(self, tournament_list):
+    def showTournamentList(self, number, tournament_list):
         """Mise en page de l'affichage de la liste des tournois"""
-        print(f" * {tournament_list}")
+        print(f" {number}- {tournament_list}")
 
     def titelPlayerSortedInTournament(self):
         """En-tête le la liste des joueurs dans un tournoi"""
         print("\nListe des joueurs trier par ordre alphbetique\n")
-        print(" {NOM}      {PRENOM}")
-        print("----------+----------")
+        print("{N}|   {NOM}   |  {PRENOM}  ")
+        print("---+-----------+------------")
 
-    def showPlayerName(self, nom, prenom):
-        print(f"{nom}           {prenom}")
+    def showPlayerName(self, rang, nom, prenom):
+        print(f" {rang} |    {nom}     |     {prenom}     ")
 
     def showListTournamentWithNumber(self, numero, tournament):
         print(f"{numero}- {tournament}")

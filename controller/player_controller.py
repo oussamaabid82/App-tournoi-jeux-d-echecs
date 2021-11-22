@@ -55,8 +55,10 @@ class PlayerController:
         list = name_list
         list_sort = (sorted(list, key=lambda list: list["nom"]))
         self.player_view.messagePlayerSortedAlphabetical()
+        n = 0
         for i in list_sort:
-            self.player_view.showPlayerName(i["nom"], i["prenom"])
+            n += 1
+            self.player_view.showPlayerName(n, i["nom"], i["prenom"], i["classement"])
 
     def getPlayerSortedClassement(self):
         """Affiche tous les acteurs par ordre de classement"""
@@ -68,5 +70,7 @@ class PlayerController:
         list = name_list
         self.player_view.messagePlayerSortedClassement()
         list_sort = (sorted(list, key=lambda list: list["classement"]))
+        n = 0
         for i in list_sort:
-            self.player_view.showPlayerName(i["nom"], i["prenom"])
+            n += 1
+            self.player_view.showPlayerName(n, i["nom"], i["prenom"], i["classement"])

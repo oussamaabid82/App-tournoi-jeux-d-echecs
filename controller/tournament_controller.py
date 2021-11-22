@@ -1,6 +1,7 @@
 from tinydb import TinyDB
 from view.tournament_view import TournamentView
 from models.tournament_model import TournamentModels
+from view.description_view import DescriptionView
 
 
 class TournamentContoller:
@@ -10,6 +11,7 @@ class TournamentContoller:
         self.players = players
         self.tournament = TournamentModels()
         self.tournament_view = TournamentView()
+        self.descriptions = DescriptionView()
 
     def startTournament(self):
         """Affiche le debut du tournoi"""
@@ -39,6 +41,10 @@ class TournamentContoller:
         self.tournament.tours_list = self.round
         self.tournament.match_list = self.matchs
 
+    def tournamentDescriptionsController(self):
+        description = self.descriptions.showDescription()
+        self.tournament.tournamentDescriptionsModel(description)
+
     def save(self):
         db = TinyDB("save/db.json")
         tournament_table = db.table("Tournament")
@@ -50,8 +56,10 @@ class TournamentContoller:
         db = TinyDB("save/db.json")
         tournament_table = db.table("Tournament")
         self.tournament_view.titelTournamentRaport()
+        n = 0
         for i in tournament_table:
-            self.tournament_view.showTournamentList(i["nom"])
+            n += 1
+            self.tournament_view.showTournamentList(n, i["nom"])
 
     def listTournamentWitnNumbers(self):
         """Affiche la liste des tounois numéroter"""
@@ -64,7 +72,7 @@ class TournamentContoller:
         liste = tuple(zip(number_tournament, list_of_tournament))
         return liste
 
-    def getPlayersInTournament(self):
+    def getPlayersInTournamentAlphbetical(self):
         """Afficher la liste des joueurs dans un tournoi choisi"""
         name_list = []
         db = TinyDB("save/db.json")
@@ -78,8 +86,10 @@ class TournamentContoller:
         list = name_list
         list_sort = (sorted(list, key=lambda list: list))
         self.tournament_view.titelPlayerSortedInTournament()
+        n = 0
         for player in list_sort:
-            self.tournament_view.showPlayerName(player[0], player[1])
+            n += 1
+            self.tournament_view.showPlayerName(n, player[0], player[1])
 
     def getRound(self):
         """Afficher la liste des tours d'un tournoi choisi"""

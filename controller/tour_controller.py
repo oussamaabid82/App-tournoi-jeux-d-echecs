@@ -1,5 +1,4 @@
 from models.tour_model import TourModel
-from models.match_model import MatchModel
 from view.tour_view import TourView
 from view.match_view import MatchView
 
@@ -21,10 +20,8 @@ class TourController:
         self.match_view.starMatchView()
         for pair in self.tour_models.genererPairOfPlayers():
             self.match_view.playerMatch(pair)
-
         for pair in self.tour_models.genererPairOfPlayers():
             result = self.match_view.enterMatchResults(pair)
-            match_model = MatchModel(result)
             self.match_list.append(result)
         self.tour_view.finishTour(self.tour_models.nom_de_tour)
         return(self.tour_models.round_list)
@@ -42,9 +39,7 @@ class TourController:
             self.match_view.starMatchView()
             for pair in tour_models.generatePaire():
                 self.match_view.playerMatch(pair)
-
             for pair in tour_models.generatePaire():
                 result = self.match_view.enterMatchResults(pair)
-                match_model = MatchModel(result)
                 self.match_list.append(result)
             self.tour_view.finishTour(tour_models.nom_de_tour)
