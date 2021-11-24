@@ -59,11 +59,11 @@ class TournamentView:
     def titelPlayerSortedInTournament(self):
         """En-tête le la liste des joueurs dans un tournoi"""
         print("\nListe des joueurs trier par ordre alphbetique\n")
-        print("{N}|   {NOM}   |  {PRENOM}  ")
-        print("---+-----------+------------")
+        print("{N}|   {NOM}   |  {PRENOM}  |")
+        print("---+-----------+------------+")
 
     def showPlayerName(self, rang, nom, prenom):
-        print(f" {rang} |    {nom}     |     {prenom}     ")
+        print(f" {rang} |    {nom}    |     {prenom}    |")
 
     def showListTournamentWithNumber(self, numero, tournament):
         print(f"{numero}- {tournament}")

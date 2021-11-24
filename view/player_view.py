@@ -39,18 +39,18 @@ class PlayerView:
     def messagePlayerSortedAlphabetical(self):
         """En-tête de la liste des joueurs"""
         print("\nListe des joueurs trier par ordre alphbetique\n")
-        print("{N}|   {NOM}   |  {PRENOM}  | {CLASSEMENT} ")
-        print("---+-----------+------------+--------------")
+        print("{N}|   {NOM}   |  {PRENOM}  |   {CLS}   |")
+        print("---+-----------+------------+-----------+")
 
     def messagePlayerSortedClassement(self):
         """En-tête de la liste des joueurs"""
         print("\nListe des joueurs trier par classement\n")
-        print("{N}|   {NOM}   |  {PRENOM}  | {CLASSEMENT} ")
-        print("---+-----------+------------+--------------")
+        print("{N}|   {NOM}   |  {PRENOM}  |   {CLS}   |")
+        print("---+-----------+------------+-----------+")
 
     def showPlayerName(self, rang, nom, prenom, classement):
         """Corps de la liste des joueurs"""
-        print(f" {rang} |    {nom}     |     {prenom}     |        {classement} ")
+        print(f" {rang} |    {nom}    |     {prenom}    |   {classement}       |")
 
     def showMAJ(self):
         print("\n***** Mise a jour du classement d'un joueur *****\n")

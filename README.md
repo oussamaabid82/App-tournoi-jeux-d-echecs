@@ -28,6 +28,13 @@
 		```shell
 		python ctm.py
 		```
+* ### Flake8
+	- Pour valider le code au regard de la PEP8 et avoir un rapport flake8-html, il faut effectuer le peluchage du code en tapant dans votre terminal:
+		```shell
+		python -m flake8 --format=html --htmldir=flake-report
+		```
+	- Pour éviter que flake8 fait le peluchage du dossier de l'environnement virtuel, veuillez ouvrir le fichier ```.flake8``` dans votre éditeur de texte et veuillez modifier la 3éme ligne comme ce qui suit:
+		* exclude = (Nom du dossier de l'environnement virtuel)/*
 
 * ### Fabriqué avec
 	- [VSCode](https://code.visualstudio.com/) 
